@@ -28,7 +28,7 @@ plugins=(git z sudo archlinux)
 
 # Source OMZ
 #source $ZSH/oh-my-zsh.sh
-source ~/.config/powerlevel10k/powerlevel10k.zsh-theme
+source ~/.config/p10k/powerlevel10k.zsh-theme
 
 if [[ -f ~/.cache/ls_colors ]]; then
   source ~/.cache/ls_colors

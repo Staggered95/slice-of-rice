@@ -1,0 +1,9 @@
+hyprsunset-git
+xdg-desktop-portal-hyprland-git
+mpvpaper
+catppuccin-gtk-theme-mocha
+catppuccin-gtk-theme-latte
+everforest-gtk-theme-git
+gruvbox-material-gtk-theme-git
+spotify
+vscodium-bin
