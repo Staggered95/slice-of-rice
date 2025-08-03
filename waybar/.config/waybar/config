@@ -1,0 +1,125 @@
+{
+    "layer": "top",
+    "position": "top",
+    "start-visible": false,
+    "output": "eDP-1",
+    "id": "mainbar", 
+    "height": 42,
+    "modules-left": ["clock", "custom/netspeed", "custom/playing"],
+    "modules-center": ["hyprland/workspaces"],
+    "modules-right": ["network", "bluetooth", "pulseaudio", "tray", "memory", "battery", "custom/power"],
+
+    "hyprland/workspaces": {
+        "format": "{name}",
+        "on-click": "activate",
+        "on-scroll-up": "hyprctl dispatch workspace e+1",
+        "on-scroll-down": "hyprctl dispatch workspace e-1"
+    },
+    "hyprland/window": {
+        "format": "{title}",
+        "max-length": 50,
+        "icon": true,
+        "icon-size": 24
+    },
+    "clock": {
+        "format": "{:%H:%M}",
+        "format-alt": " {:%A, %d %B %Y}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    },
+    "tray": {
+        "icon-size": 16,
+        "spacing": 10
+    },
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": " Muted",
+        "format-icons": {
+            "default": ["", ""]
+        },
+        "on-click": "pavucontrol",
+        "on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",
+        "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%"
+    },
+   "network": {
+        "interface": "wlp1s0",
+        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-ethernet": "{ifname} ",
+        "format-disconnected": "Disconnected ",
+        "exec": "sh ~/.config/hypr/scripts/netspeed_dl.sh",
+        "interval": 2,
+        "tooltip-format-wifi": "Signal Strength: {signalStrength}%",
+        "on-click": "nm-connection-editor"
+    },
+    "bluetooth": {
+        "format": " {status}",
+        "format-disabled": " Off",
+        "format-connected": " {device_alias}",
+        "tooltip-format-connected": "{device_address}",
+	"on-click": "blueman-manager"
+    },
+    "battery": {
+        "interval": 10,
+        "format": "{icon} {capacity}%",
+        "format-charging": "⚡ {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-icons": ["", "", "", "", ""],
+        "states": {
+            "warning": 30,
+            "critical": 15
+        }
+    },
+    "cpu": {
+        "format": "󰾆  {usage}%",
+        "tooltip": true
+    },
+    "memory": {
+        "format": "󰾆 {}%"
+    },
+    "custom/qs-toggle": {
+        "format": "",
+        "tooltip": false,
+        "on-click": "sh ~/.config/hypr/scripts/toggle_qs.sh"
+    },
+    "mpris": {
+        "format": "{player_icon} {title}",
+        "format-dynamic": "{artist} - {title}",
+        "format-stopped": "No Music Playing",
+        "player-icons": {
+            "default": "",
+            "mpv": "",
+            "spotify": "󰓇",
+            "firefox": "",
+            "vlc": "󰕼"
+        },
+        "status-icons": {
+            "playing": "",
+            "paused": ""
+        },
+        "max-length": 50,
+        "on-click": "playerctl play-pause",
+        "on-scroll-up": "playerctl next",
+        "on-scroll-down": "playerctl previous"
+    },
+    "custom/playing": {
+        "interval": 2,
+        "format": {},
+        "exec": "sh ~/.config/hypr/scripts/get_song_info.sh",
+        "max-length": 50,
+        "on-click": "playerctl play-pause",
+        "on-click-right": "playerctl next",
+        "on-click-middle": "playerctl previous"
+    },
+    "custom/netspeed": {
+    "format": "{}",
+    "exec": "sh ~/.config/hypr/scripts/netspeed.sh",
+    "interval": 2, 
+    "tooltip": false
+    },
+    "custom/power": {
+    "format": "⏻",
+    "tooltip": false,
+    "on-click": "sh ~/.config/hypr/scripts/power_menu.sh"
+    },
+
+}

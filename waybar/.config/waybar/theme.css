@@ -1,0 +1,22 @@
+@define-color bar-bg rgba(31, 35, 40, 0.0);
+
+@define-color main-bg #3C4841;
+@define-color main-fg #A7C080;
+
+@define-color act-bg #A7C080;
+@define-color act-fg #384B55;
+
+@define-color hvr-bg #83C092;
+@define-color hvr-fg #2E383C;
+
+@define-color fcs-bg #45443C;
+@define-color fcs-fg #D3C6AA;
+
+@define-color bat-chrg #83C092;
+@define-color bat-warn #DBBC7F;
+@define-color bat-crit #E67E80;
+
+@define-color pow-bg #101419;
+
+@define-color blink-bg #D3C6AA;
+@define-color blink-fg #E67E80;

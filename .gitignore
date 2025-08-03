@@ -1,0 +1,12 @@
+# Ignore common temporary files
+*.bak
+*.swp
+*~
+
+# Ignore any files containing secrets
+secrets.conf
+*.secret
+
+# Ignore user-specific caches or history
+.cache/
+.zsh_history

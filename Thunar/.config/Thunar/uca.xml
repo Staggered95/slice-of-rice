@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+<action>
+	<icon>utilities-terminal</icon>
+	<name>Open Terminal Here</name>
+	<submenu></submenu>
+	<unique-id>1753340903756236-1</unique-id>
+	<command>exo-open --working-directory %f --launch TerminalEmulator</command>
+	<description>Example for a custom action</description>
+	<range></range>
+	<patterns>*</patterns>
+	<startup-notify/>
+	<directories/>
+</action>
+<action>
+	<icon>wallpaper</icon>
+	<name>Set as wallpaper (Hyprland)</name>
+	<submenu></submenu>
+	<unique-id>1753894387464523-1</unique-id>
+	<command>sh ~/.config/hypr/scripts/set-wallpaper.sh %f</command>
+	<description>Sets the wallpaper in hyprland</description>
+	<range>*</range>
+	<patterns>*.jpg;*.png;*mp4;*gif</patterns>
+	<image-files/>
+	<video-files/>
+</action>
+<action>
+	<icon>trimage</icon>
+	<name>Set as Lockscreen</name>
+	<submenu></submenu>
+	<unique-id>1753894929264663-2</unique-id>
+	<command>sh ~/.config/hypr/scripts/set-wallpaper.sh %f --lock</command>
+	<description></description>
+	<range>*</range>
+	<patterns>*.png;*.jpg;*.jpeg</patterns>
+	<image-files/>
+</action>
+<action>
+	<icon>icon_user</icon>
+	<name>Set as Profile</name>
+	<submenu></submenu>
+	<unique-id>1753895765679148-3</unique-id>
+	<command>sh ~/.config/hypr/scripts/set-wallpaper.sh --pfp</command>
+	<description></description>
+	<range>*</range>
+	<patterns>*.jpg;*.png;*.jpeg</patterns>
+	<image-files/>
+</action>
+</actions>

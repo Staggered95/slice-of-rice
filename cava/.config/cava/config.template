@@ -1,0 +1,25 @@
+[general]
+bars = 16
+bar_width = 8
+framerate = 60
+
+[input]
+method = pulse
+source = auto
+
+[output]
+method = ncurses
+channels = mono
+mono_option = average
+
+# --- THEME SECTION ---
+# All color settings MUST be inside this [color] block
+[color]
+# background = '__foreground__'
+foreground = '__background__'
+
+gradient = 1
+gradient_count = 3
+gradient_color_1 = '__gradient_1__'
+gradient_color_2 = '__gradient_2__'
+gradient_color_3 = '__gradient_3__'

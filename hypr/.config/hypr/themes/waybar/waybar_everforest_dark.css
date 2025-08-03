@@ -1,0 +1,167 @@
+/*
+ * Custom Green Monochrome Theme for Waybar
+ * Based on user-provided palette
+ */
+
+/* --- Color Variables --- */
+@define-color bar_bg rgba(31, 35, 40, 0.0);
+@define-color main_bg #3C4841;
+@define-color main_fg #A7C080;
+@define-color active_bg #A7C080;
+@define-color active_fg #384B55;
+@define-color hover_bg #83C092;
+@define-color hover_fg #2E383C;
+@define-color focus_bg #45443C;
+@define-color focus_fg #D3C6AA;
+@define-color battery_charging_bg #83C092;
+@define-color battery_charging_fg #232A2E;
+@define-color battery_warning_bg #DBBC7F;
+@define-color battery_warning_fg #232A2E;
+@define-color battery_critical_bg #E67E80;
+@define-color battery_critical_fg #232A2E;
+@define-color power_bg #101419;
+@define-color power_fg #A7C080;
+@define-color blink_bg #D3C6AA;
+@define-color blink_fg #E67E80;
+@define-color disabled_bg #495156;
+@define-color disabled_fg #9DA9A0;
+
+
+* {
+    font-family: "JetBrains Mono Nerd Font";
+    font-size: 14px;
+    border: none;
+    border-radius: 0;
+}
+
+/* --- Main Bar --- */
+window#waybar {
+    background-color: @bar_bg; /* Dark green background with transparency */
+    color: @main_fg;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    /* You can set the top corners to 0 to be explicit */
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+window#waybar.visible {
+    opacity: 1;
+    transition-property: opacity;
+    transition-duration: 1s;
+}
+
+/* --- Base Module Style --- */
+#workspaces,
+#clock,
+#tray,
+#memory,
+#cpu,
+#pulseaudio,
+#network,
+#custom-netspeed,
+#custom-playing,
+#bluetooth,
+#battery,
+#custom-theme,
+#custom-power {
+    background-color: @main_bg;
+    color: @main_fg;
+    padding: 0px 15px;
+    margin: 5px 4px 8px 4px;
+    border-radius: 25px;
+}
+
+/* --- Workspace Indicator --- */
+
+#workspaces {
+    padding: 0px 0px;
+}
+
+#workspaces button {
+    background-color: @main_bg;
+    color: @main_fg;
+    padding: 0px 0px;
+    margin: 4px 4px;
+    border-radius: 25px;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+#workspaces button:hover {
+    background-color: @hover_bg;
+    color: @hover_fg;
+    padding: 0px 0px;
+    border-radius: 25px;
+}
+#workspaces button.active {
+    background-color: @active_bg;
+    color: @active_fg;
+    padding: 0px 11px;
+    border-radius: 25px;
+}
+#workspaces button.focused {
+    background-color: @focus_bg;
+    color: @focus_fg;
+}
+
+/* --- State-Aware Module Styling --- */
+#pulseaudio {
+    background-color: @main_bg;
+    color: @main_fg;
+}
+#pulseaudio.muted {
+    background-color: @focus_bg;
+    color: @focus_fg;
+}
+
+#network.disconnected {
+    background-color: @disabled_bg;
+    color: @disabled_fg;
+}
+
+#bluetooth.connected {
+    background-color: @active_bg;
+    color: @active_fg;
+}
+#bluetooth.disabled {
+    background-color: @disabled_bg;
+    color: @disabled_fg;
+}
+
+#battery.charging, #battery.plugged {
+    background-color: @battery_charging_bg;
+    color: @battery_charging_fg;
+}
+#battery.warning:not(.charging) {
+    background-color: @battery_warning_bg;
+    color: @battery_warning_fg;
+}
+#battery.critical:not(.charging) {
+    background-color: @battery_critical_bg;
+    color: @battery_critical_fg;
+    animation-name: blink;
+    animation-duration: 0.8s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+/* --- Specific Modules --- */
+#custom-power {
+    background-color: @power_bg;
+    color: @power_fg;
+    border: 1px solid @power_fg;
+    border-radius: 15px;
+}
+
+#custom-power:hover {
+    background-color: @hover_bg;
+    color: @hover_fg;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* --- Blinking Animation --- */
+@keyframes blink {
+    to {
+        background-color: @blink_bg;
+        color: @blink_fg;
+    }
+}

@@ -1,0 +1,53 @@
+#!/bin/bash
+
+# --- SCRIPT TO SET WALLPAPER AND SAVE IT TO THE CURRENT THEME ---
+
+# --- Check for arguments ---
+if [ -z "$1" ]; then
+    echo "Usage: $0 /path/to/image [--lock|--pfp]"
+    exit 1
+fi
+
+IMG_PATH="$1"
+MODE="$2"
+
+# --- Get the current theme name ---
+# This reads the 'current_theme.sh' file to find the active theme script,
+# then extracts the theme name (e.g., 'catppuccin' or 'everforest')
+CURRENT_THEME=$(cat "$HOME/.config/hypr/themes/current_theme.state")
+FILE_EXTENSION="${IMG_PATH##*.}"
+
+# --- Main Logic ---
+case $MODE in
+    --lock)
+        # Set the lockscreen background
+        sed -i "s|path = .* # LOCK_WALL|path = $IMG_PATH # LOCK_WALL|g" ~/.config/hypr/hyprlock.conf
+	echo "$IMG_PATH" > "$HOME/.config/hypr/themes/lockscreen/${CURRENT_THEME}.lockpaper"
+        notify-send "Lockscreen Changed" "New background set."
+        ;;
+    --pfp)
+        # Set the profile picture
+        sed -i "s|path = .* # AVATAR|path = $IMG_PATH # AVATAR|g" ~/.config/hypr/hyprlock.conf
+        notify-send "Profile Picture Changed" "New avatar set."
+        ;;
+    *)
+        # Default action: Set desktop wallpaper and remember it for the theme
+        MONITOR=$(hyprctl monitors | grep 'Monitor' | head -n 1 | awk '{print $2}')
+
+        # 1. Set the wallpaper now
+        hyprctl hyprpaper preload "$IMG_PATH"
+        hyprctl hyprpaper wallpaper "$MONITOR,$IMG_PATH"
+
+        # 2. Update hyprpaper.conf for persistence after reboot
+        sed -i "s|^preload = .*|preload = $WALLPAPER_PATH|" ~/.config/hypr/hyprpaper.conf
+        sed -i "s|^wallpaper = .*|wallpaper = $MONITOR,$WALLPAPER_PATH|" ~/.config/hypr/hyprpaper.conf
+
+        # 3. Save the wallpaper path to the current theme's state file
+        if [ -n "$CURRENT_THEME" ]; then
+            echo "$IMG_PATH" > "$HOME/.config/hypr/themes/wallpaper/${CURRENT_THEME}.wallpaper"
+            notify-send "Wallpaper Changed" "Set for '$CURRENT_THEME' theme."
+        else
+            notify-send "Wallpaper Changed" "Note: No active theme found."
+        fi
+        ;;
+esac

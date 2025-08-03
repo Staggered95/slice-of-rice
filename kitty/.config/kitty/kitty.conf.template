@@ -1,0 +1,54 @@
+# Kitty Configuration Template
+
+# --- Font & Layout Settings ---
+font_family __font_family__
+bold_font auto
+italic_font auto
+font_size __font_size__
+
+background_opacity __background_opacity__
+window_padding_width __window_padding_width__
+scrollback_lines 5000
+
+
+# --- Color Scheme ---
+# These values are injected by the theme-switcher script
+
+foreground                      __foreground__
+background                      __background__
+selection_foreground            __selection_foreground__
+selection_background            __selection_background__
+cursor                          __cursor__
+url_color                       __url_color__
+
+# Black
+color0                          __color0__
+color8                          __color8__
+
+# Red
+color1                          __color1__
+color9                          __color9__
+
+# Green
+color2                          __color2__
+color10                         __color10__
+
+# Yellow
+color3                          __color3__
+color11                         __color11__
+
+# Blue
+color4                          __color4__
+color12                         __color12__
+
+# Magenta
+color5                          __color5__
+color13                         __color13__
+
+# Cyan
+color6                          __color6__
+color14                         __color14__
+
+# White
+color7                          __color7__
+color15                         __color15__

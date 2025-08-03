@@ -1,0 +1,66 @@
+/*
+ * Wofi - Polished Everforest Clipboard Menu
+ */
+
+/* --- Color Variables --- */
+@define-color bg #2f383e;
+@define-color fg #d3c6aa;
+@define-color green #a7c080;
+@define-color grey #4a555b;
+@define-color highlight #5f6b71;
+
+* {
+    font-family: "JetBrains Mono Nerd Font";
+}
+
+/* --- Main Window --- */
+window {
+    background-color: transparent;
+    border: 2px solid #A0AA7A;
+    border-radius: 7px;
+}
+
+#mainbox {
+    background-color: rgba(47, 56, 62, 0.9);
+    border: 2px solid @grey;
+    border-radius: 15px;
+    width: 550px;
+}
+
+/* --- Search Bar --- */
+#input {
+    margin: 15px;
+    padding: 8px 12px;
+    background-color: @bg;
+    color: @fg;
+    border: 1px solid @grey;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+/* --- Results List --- */
+#inner-box {
+    padding: 0 15px 15px 15px;
+}
+
+/* --- Individual List Items (Entries) --- */
+#entry {
+    padding: 10px;
+    border-radius: 10px;
+    color: @fg;
+    transition: background-color 0.2s ease-in-out;
+}
+
+#entry:selected {
+    background-color: @green; /* Use vibrant green for selection */
+    color: @bg;               /* Use dark background for text for contrast */
+}
+
+#entry:hover {
+    background-color: @highlight;
+}
+
+/* --- Text inside each entry --- */
+#text {
+    color: inherit;
+}

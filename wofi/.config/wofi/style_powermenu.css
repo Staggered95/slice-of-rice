@@ -1,0 +1,63 @@
+/*
+ * Wofi - Polished Everforest Power Menu (Larger Buttons)
+ */
+
+/* --- Color Variables --- */
+@define-color window_background transparent;
+@define-color window_border #A7C080;
+@define-color input_bg #384B55;
+@define-color input_fg #A7C080;
+@define-color input_border #A7C080;
+@define-color input_focus_border #A7C080;
+@define-color entry_main_fg #A7C080;
+@define-color entry_main_bg #D3C6AA;
+@define-color entry_selected_bg #A7C080;
+@define-color entry_selected_fg #414B5O;
+@define-color entry_hover_bg #83C092;
+
+
+* {
+    font-family: "JetBrains Mono Nerd Font";
+}
+
+window {
+    background-color: @window_background;
+}
+
+#mainbox {
+    background-color: rgba(39, 46, 51, 0.85);
+    border: 2px solid @green;
+    border-radius: 15px;
+}
+
+#inner-box {
+    orientation: vertical;
+    spacing: 15px;  /* Increased spacing between buttons */
+    padding: 20px;  /* Increased padding around the button group */
+}
+
+#entry {
+    font-size: 24px;   /* <-- Increased font size */
+    color: @entry_main_fg;
+    padding: 15px 25px; /* <-- Increased padding inside each button */
+    border-radius: 12px;
+    transition: background-color 0.2s ease-in-out;
+}
+
+#entry:selected {
+    background-color: @entry_selected_bg;
+    color: @entry_selected_fg;
+}
+
+#entry:hover {
+    background-color: @entry_hover_bg;
+}
+
+#text {
+    color: inherit;
+}
+
+#input {
+    margin: -500px;
+    background-color: @window_background;
+}

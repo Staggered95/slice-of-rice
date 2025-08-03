@@ -1,0 +1,66 @@
+/*
+ * Wofi - Everforest Light Clipboard Menu
+ */
+
+/* --- Color Variables --- */
+@define-color bg #F3EAD3;
+@define-color fg #5D6C72;
+@define-color green #8DA101;
+@define-color grey #D8D3BA;
+@define-color highlight #E5DFCF;
+
+* {
+    font-family: "JetBrains Mono Nerd Font";
+}
+
+/* --- Main Window --- */
+window {
+    background-color: rgba(199, 224, 123, 0.7);
+    border: 2px solid @green;
+    border-radius: 7px;
+}
+
+#mainbox {
+    background-color: rgba(243, 234, 211, 0.9); /* Light BG with transparency */
+    border: 2px solid @grey;
+    border-radius: 15px;
+    width: 550px;
+}
+
+/* --- Search Bar --- */
+#input {
+    margin: 15px;
+    padding: 8px 12px;
+    background-color: @highlight;
+    color: @fg;
+    border: 1px solid @grey;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+/* --- Results List --- */
+#inner-box {
+    padding: 0 15px 15px 15px;
+}
+
+/* --- Individual List Items (Entries) --- */
+#entry {
+    padding: 10px;
+    border-radius: 10px;
+    color: @fg;
+    transition: background-color 0.2s ease-in-out;
+}
+
+#entry:selected {
+    background-color: @green; /* Use vibrant green for selection */
+    color: @bg;               /* Use light background for text for contrast */
+}
+
+#entry:hover {
+    background-color: @highlight;
+}
+
+/* --- Text inside each entry --- */
+#text {
+    color: inherit;
+}

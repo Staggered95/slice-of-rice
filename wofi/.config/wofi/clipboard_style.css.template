@@ -1,0 +1,73 @@
+/*
+ * Wofi - Polished Everforest Clipboard Menu
+ */
+
+/* --- Color Variables --- */
+@define-color window_background __window_bg__;
+@define-color window_border __window_border__;
+@define-color input_bg __input_bg__;
+@define-color input_fg __input_fg__;
+@define-color input_border __input_border__;
+@define-color input_focus_border __input_focus_border__;
+@define-color entry_main_fg __entry_main_fg__;
+@define-color entry_main_bg __entry_main_bg__;
+@define-color entry_selected_bg __entry_selected_bg__;
+@define-color entry_selected_fg __entry_selected_fg__;
+@define-color entry_hover_bg __entry_hover_bg__;
+
+
+* {
+    font-family: "JetBrains Mono Nerd Font";
+}
+
+/* --- Main Window --- */
+window {
+    background-color: @window_background;
+    border: 2px solid @window_border;
+    border-radius: 7px;
+}
+
+#mainbox {
+    background-color: rgba(47, 56, 62, 0.9);
+    border: 2px solid @grey;
+    border-radius: 15px;
+    width: 550px;
+}
+
+/* --- Search Bar --- */
+#input {
+    margin: 15px;
+    padding: 8px 12px;
+    background-color: @input_bg;
+    color: @input_fg;
+    border: 1px solid @input_border;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+/* --- Results List --- */
+#inner-box {
+    padding: 0 15px 15px 15px;
+}
+
+/* --- Individual List Items (Entries) --- */
+#entry {
+    padding: 10px;
+    border-radius: 10px;
+    color: @entry_main_fg;
+    transition: background-color 0.2s ease-in-out;
+}
+
+#entry:selected {
+    background-color: @entry_selected_bg; /* Use vibrant green for selection */
+    color: @entry_selected_fg;               /* Use dark background for text for contrast */
+}
+
+#entry:hover {
+    background-color: @entry_hover_bg;
+}
+
+/* --- Text inside each entry --- */
+#text {
+    color: inherit;
+}

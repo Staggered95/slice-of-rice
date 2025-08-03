@@ -1,0 +1,78 @@
+/*
+ * Wofi - Polished Everforest Theme (with transparency and rounding fix)
+ */
+
+/* --- Color Variables --- */
+@define-color window_background transparent;
+@define-color window_border #A7C080;
+@define-color input_bg #384B55;
+@define-color input_fg #A7C080;
+@define-color input_border #A7C080;
+@define-color input_focus_border #A7C080;
+@define-color entry_main_fg #A7C080;
+@define-color entry_main_bg #D3C6AA;
+@define-color entry_selected_bg #A7C080;
+@define-color entry_selected_fg #414B5O;
+@define-color entry_hover_bg #83C092;
+
+* {
+    font-family: "JetBrains Mono Nerd Font";
+}
+
+/* Make the outermost window completely transparent to hide its corners */
+window {
+    background: @window_background;
+    border-radius: 7px;
+    border: 2px solid @window_border;
+}
+
+
+/* --- Search Bar --- */
+#input {
+    margin: 15px;
+    padding: 8px 12px;
+    background-color: @input_bg;
+    color: @input_fg;
+    border: 1px solid @input_border;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+#input:focus {
+    border: 2px solid @input_focus_border;
+    outline: none;
+    box-shadow: none;
+}
+
+/* --- Results List --- */
+#inner-box {
+    padding: 0 15px 15px 15px;
+    border-radius: 15px;
+}
+
+/* --- Individual List Items (Entries) --- */
+#entry {
+    padding: 10px;
+    border-radius: 10px;
+    color: @entry_main_fg;
+    transition: background-color 0.2s ease-in-out;
+}
+
+#entry:selected {
+    background-color: @entry_selected_bg;
+    color: @entry_selected_fg;
+}
+
+#entry:hover {
+    background-color: @entry_hover_bg;
+}
+
+/* --- Icon and Text inside each entry --- */
+#img {
+    margin-right: 10px;
+}
+
+#text {
+    color: inherit;
+}
+

@@ -1,0 +1,72 @@
+/*
+ * Wofi - Polished Everforest Light Theme
+ */
+
+/* --- Color Variables --- */
+@define-color bg #F3EAD3;
+@define-color fg #5C6A72;
+@define-color green #8DA101;
+@define-color grey #D8D3BA;
+@define-color highlight #E5DFCF;
+@define-color dark-bg #4a555b; /* From the dark palette for contrast */
+
+
+* {
+    font-family: "JetBrains Mono Nerd Font";
+}
+
+/* Make the outermost window completely transparent */
+window {
+    background-color: rgba(199, 224, 123, 0.7);;
+    border-radius: 7px;
+    border: 3px solid @green;
+}
+
+/* Apply all visual styles to the #mainbox */
+#mainbox {
+    background-color: rgba(243, 234, 211, 0.9); /* Light BG with transparency */
+    border: 2px solid @grey;
+    border-radius: 15px;
+}
+
+/* --- Search Bar --- */
+#input {
+    margin: 15px;
+    padding: 8px 12px;
+    background-color: @highlight;
+    color: @fg;
+    border: 1px solid @grey;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+/* --- Results List --- */
+#inner-box {
+    padding: 0 15px 15px 15px;
+}
+
+/* --- Individual List Items (Entries) --- */
+#entry {
+    padding: 10px;
+    border-radius: 10px;
+    color: @fg;
+    transition: background-color 0.2s ease-in-out;
+}
+
+#entry:selected {
+    background-color: @green; /* Use vibrant green for selection */
+    color: @bg;               /* Use light background for text for contrast */
+}
+
+#entry:hover {
+    background-color: @highlight;
+}
+
+/* --- Icon and Text inside each entry --- */
+#img {
+    margin-right: 10px;
+}
+
+#text {
+    color: inherit;
+}
