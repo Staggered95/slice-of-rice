@@ -6,6 +6,7 @@ hyprlock
 swww
 hyprpicker
 waybar
+nvim
 wofi
 dunst
 hyprpolkitagent

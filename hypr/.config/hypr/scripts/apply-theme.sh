@@ -18,7 +18,7 @@ if [ -f "$WALLPAPER_STATE_FILE" ]; then
   WALLPAPER_PATH=$(cat "$WALLPAPER_STATE_FILE")
 else
   # Otherwise, use the theme's default wallpaper
-  WALLPAPER_PATH="$default_wallpaper"
+  WALLPAPER_PATH="$HOME/$default_wallpaper"
 fi
 
 ### WALLPAPER ###
@@ -80,7 +80,7 @@ if [ -f "$LOCKPAPER_STATE_FILE" ]; then
   LOCKPAPER_PATH=$(cat "$LOCKPAPER_STATE_FILE")
 else
   # Otherwise, use the theme's default wallpaper
-  LOCKPAPER_PATH="$default_lockpaper"
+  LOCKPAPER_PATH="$HOME/$default_lockpaper"
 fi
 
 if [ -f "$LOCKPAPER_PATH" ]; then

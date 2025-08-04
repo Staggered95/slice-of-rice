@@ -129,6 +129,9 @@ mkdir -p "$HOME/.local/share/icons"
 rsync -av "$CONFIG_SOURCE_DIR/assets/icons/." "$HOME/.local/share/icons"
 mkdir -p "$HOME/.local/share/fonts"
 rsync -av "$CONFIG_SOURCE_DIR/assets/fonts/." "$HOME/.local/share/fonts"
+VSCODIUM_PATH= "$HOME/.config/VSCodium/User"
+mkdir -p "$VSCODIUM"
+touch "$VSCODIUM_PATH/settings.json"
 
 success "Configuration files copied."
 
