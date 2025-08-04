@@ -1,4 +1,7 @@
 hyprland
+xdg-desktop-portal-hyprland
+hyprsunset
+rsync
 hyprlock
 swww
 hyprpicker

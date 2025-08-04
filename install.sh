@@ -43,12 +43,10 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done &> /dev/null &
 
 
 # --- 1. GATHER USER INFORMATION ---
-info "First, I need to ask a few questions to set up your system correctly."
-read -p "Please enter your desired username: " USERNAME
-read -p "Please enter your computer's name (hostname): " HOSTNAME
+echo "Welcome to Slice-of-Rice installation"
+press_enter_to_continue
 read -p "Do you want to install and configure GRUB? (y/n): " CONFIGURE_GRUB
 
-press_enter_to_continue
 
 # --- 2. VERIFY PACKAGE LISTS ---
 info "Verifying that package lists exist..."
@@ -56,7 +54,7 @@ if [ ! -f "./fresh/pkglist.txt" ] || [ ! -f "./fresh/pkglist_aur.txt" ]; then
   error "Package lists (pkglist.txt or pkglist_aur.txt) not found! Please create them first."
 fi
 success "Package lists found."
-press_enter_to_continue
+
 
 # --- 3. INSTALL PACKAGES ---
 info "Installing packages from official repositories..."
@@ -72,7 +70,6 @@ fi
 info "Installing packages from the AUR..."
 yay -S --needed --noconfirm - <./fresh/pkglist_aur.txt
 success "All packages installed."
-press_enter_to_continue
 
 # --- 4. ENABLE SYSTEM SERVICES ---
 info "Enabling essential systemd services..."
@@ -85,7 +82,6 @@ success "Services enabled."
 info "Enabling essential user services..."
 systemctl --user enable hyprpolkitagent # If you decide to use this one
 success "User services enabled."
-press_enter_to_continue
 
 # --- 5. COPY CONFIGURATION FILES ---
 info "Copying configuration files..."
@@ -135,14 +131,14 @@ mkdir -p "$HOME/.local/share/fonts"
 rsync -av "$CONFIG_SOURCE_DIR/assets/fonts/." "$HOME/.local/share/fonts"
 
 success "Configuration files copied."
-press_enter_to_continue
 
 # --- 6. INSTALL GRUB THEME (OPTIONAL) ---
 if [[ "$CONFIGURE_GRUB" == "y" || "$CONFIGURE_GRUB" == "Y" ]]; then
   info "Installing and configuring GRUB theme..."
   # This assumes you have a 'grub' folder in your dotfiles
   if [ -d "grub" ]; then
-    sudo cp -r grub/* /boot/grub/themes/
+    sudo mkdir -p /boot/grub/themes/
+    sudo cp -r ./grub/* /boot/grub/themes/
     # Define the theme path and the config file
     THEME_PATH="/boot/grub/themes/lain/theme.txt"
     CONFIG_FILE="/etc/default/grub"
@@ -164,7 +160,6 @@ if [[ "$CONFIGURE_GRUB" == "y" || "$CONFIGURE_GRUB" == "Y" ]]; then
 else
   info "Skipping GRUB theme installation as requested."
 fi
-press_enter_to_continue
 
 # --- 7. FINAL TOUCHES ---
 info "Applying final touches..."

@@ -5,6 +5,8 @@
       "name": "Everforest Dark",
       "gtk_theme": "Everforest-Green-Dark",
       "icon_theme": "Colloid-Green-Dark",
+      "default_wallpaper": "$HOME/dotfiles/assets/walls/ev_d.jpg",
+      "default_lockpaper": "$HOME/dotfiles/assets/walls/ev_d_lock.jpg",
       "cursor_theme": "Bibata-Original-Ice",
       "cursor_size": "26",
       "font_name": "Deja Vu Sans Book 11",
@@ -128,6 +130,8 @@
       "name": "Everforest Light",
       "gtk_theme": "Everforest-Green-Light",
       "icon_theme": "Colloid-Green-Light",
+      "default_wallpaper": "$HOME/dotfiles/assets/walls/ev_l.jpg",
+      "default_lockpaper": "$HOME/dotfiles/assets/walls/ev_l_lock.jpg",
       "cursor_theme": "Bibata-Modern-Classic",
       "cursor_size": "26",
       "font_name": "Deja Vu Sans Book 11",
@@ -250,6 +254,8 @@
     "metadata": {
       "gtk_theme": "catppuccin-mocha-mauve-standard+default",
       "icon_theme": "Colloid-Catppuccin-Dark",
+      "default_wallpaper": "$HOME/dotfiles/assets/walls/mocha_d.jpg",
+      "default_lockpaper": "$HOME/dotfiles/assets/walls/mocha_d_lock.jpg",
       "cursor_theme": "Bibata-Modern-Classic",
       "cursor_size": "26",
       "font_name": "DejaVu Sans Book 11",
@@ -371,6 +377,8 @@
     "metadata": {
       "gtk_theme": "catppuccin-latte-mauve-standard+default",
       "icon_theme": "Colloid-Catppuccin-Light",
+      "default_wallpaper": "$HOME/dotfiles/assets/walls/latte_l.jpg",
+      "default_lockpaper": "$HOME/dotfiles/assets/walls/latte_l_lock.jpg",
       "cursor_theme": "Bibata-Original-Ice",
       "cursor_size": "26",
       "font_name": "DejaVu Sans Book 11",
@@ -492,6 +500,8 @@
     "metadata": {
       "gtk_theme": "Gruvbox-Material-Dark",
       "icon_theme": "Colloid-Gruvbox-Dark",
+      "default_wallpaper": "$HOME/dotfiles/assets/walls/gr_d.jpg",
+      "default_lockpaper": "$HOME/dotfiles/assets/walls/gr_d_lock.jpg",
       "cursor_theme": "Capitaine Cursors",
       "cursor_size": "26",
       "font_name": "DejaVu Sans Book 11",
@@ -613,6 +623,8 @@
     "metadata": {
       "gtk_theme": "Gruvbox-Light-Medium",
       "icon_theme": "Colloid-Gruvbox-Light",
+      "default_wallpaper": "$HOME/dotfiles/assets/walls/gr_l.jpg",
+      "default_lockpaper": "$HOME/dotfiles/assets/walls/gr_l_lock.jpg",
       "cursor_theme": "Bibata-Modern-Classic",
       "cursor_size": "25",
       "font_name": "DejaVu Sans Book 11",
