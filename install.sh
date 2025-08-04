@@ -137,6 +137,7 @@ if [[ "$CONFIGURE_GRUB" == "y" || "$CONFIGURE_GRUB" == "Y" ]]; then
   info "Installing and configuring GRUB theme..."
   # This assumes you have a 'grub' folder in your dotfiles
   if [ -d "grub" ]; then
+    grub install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
     sudo mkdir -p /boot/grub/themes/
     sudo cp -r ./grub/* /boot/grub/themes/
     # Define the theme path and the config file
