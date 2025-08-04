@@ -1,1 +1,1 @@
-vim.cmd.colorscheme 'catppuccin'
+vim.g.everforest_background = 'hard' vim.cmd.colorscheme 'everforest'

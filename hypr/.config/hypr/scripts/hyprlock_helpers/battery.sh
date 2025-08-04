@@ -1,7 +1,7 @@
 #!/bin/bash
 
-BATTERY="BAT0" # Your battery name
-AC_ADAPTER="AC0" # Your AC adapter name
+BATTERY="BAT0" 
+AC_ADAPTER="AC0" 
 
 CAPACITY=$(cat "/sys/class/power_supply/${BATTERY}/capacity")
 STATUS=$(cat "/sys/class/power_supply/${BATTERY}/status")

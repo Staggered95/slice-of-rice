@@ -74,12 +74,11 @@ fi
 echo "$LUA_CMD" >"$NVIM_THEME_FILE"
 
 # --- Restore last used lock screen wallpaper ---
-# Determine which wallpaper to use: the user's last choice, or the theme's default.
 if [ -f "$LOCKPAPER_STATE_FILE" ]; then
   # Use the user's saved wallpaper if it exists
   LOCKPAPER_PATH=$(cat "$LOCKPAPER_STATE_FILE")
 else
-  # Otherwise, use the theme's default wallpaper
+  # Otherwise, use the theme's default lockpaper
   LOCKPAPER_PATH="$HOME/$default_lockpaper"
 fi
 

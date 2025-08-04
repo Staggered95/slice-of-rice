@@ -4,25 +4,25 @@
  */
 
 /* --- Color Variables --- */
-@define-color bar_bg rgba(30, 30, 46, 0.85);
-@define-color main_bg #313244;
-@define-color main_fg #cdd6f4;
-@define-color active_bg #89b4fa;
-@define-color active_fg #1e1e2e;
-@define-color hover_bg #585b70;
-@define-color hover_fg #cdd6f4;
-@define-color focus_bg #45475a;
-@define-color focus_fg #cdd6f4;
-@define-color battery_charging_bg #a6e3a1;
-@define-color battery_charging_fg #1e1e2e;
-@define-color battery_warning_bg #f9e2af;
-@define-color battery_warning_fg #1e1e2e;
-@define-color battery_critical_bg #f38ba8;
-@define-color battery_critical_fg #1e1e2e;
-@define-color power_bg #f38ba8;
-@define-color power_fg #1e1e2e;
-@define-color blink_bg #cdd6f4;
-@define-color blink_fg #f38ba8;
+@define-color bar_bg rgba(31, 35, 40, 0.0);
+@define-color main_bg #3C4841;
+@define-color main_fg #A7C080;
+@define-color active_bg #A7C080;
+@define-color active_fg #384B55;
+@define-color hover_bg #83C092;
+@define-color hover_fg #2E383C;
+@define-color focus_bg #45443C;
+@define-color focus_fg #D3C6AA;
+@define-color battery_charging_bg #83C092;
+@define-color battery_charging_fg #232A2E;
+@define-color battery_warning_bg #DBBC7F;
+@define-color battery_warning_fg #232A2E;
+@define-color battery_critical_bg #E67E80;
+@define-color battery_critical_fg #232A2E;
+@define-color power_bg #101419;
+@define-color power_fg #A7C080;
+@define-color blink_bg #D3C6AA;
+@define-color blink_fg #E67E80;
 @define-color disabled_bg #495156;
 @define-color disabled_fg #9DA9A0;
 

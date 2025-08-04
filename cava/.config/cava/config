@@ -13,13 +13,13 @@ channels = mono
 mono_option = average
 
 # --- THEME SECTION ---
-# All color settings MUST be inside this [color] block
+
 [color]
-# background = '#cdd6f4'
-foreground = '#1e1e2e'
+# background = '#d3c6aa'
+foreground = '#2f383e'
 
 gradient = 1
 gradient_count = 3
-gradient_color_1 = '#cba6f7'
-gradient_color_2 = '#89b4fa'
-gradient_color_3 = '#94e2d5'
+gradient_color_1 = '#4a555b'
+gradient_color_2 = '#a7c080'
+gradient_color_3 = '#dbbc7f'
