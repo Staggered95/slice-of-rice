@@ -5,6 +5,7 @@ hyprpicker
 waybar
 wofi
 dunst
+hyprpolkitagent
 kitty
 zsh
 nwg-look
