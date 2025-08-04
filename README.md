@@ -20,14 +20,43 @@
 
 A dynamic desktop experience with seamless, one-click theme switching between multiple curated palettes.
 
+## Everforest
 <p align="center">
-  <img src="./views/1v.png" alt="Desktop Screenshot 1" width="80%">
+  <img src="./views/1e.png" alt="Desktop Screenshot 1" width="80%">
   <em></em>
 </p>
 
 <p align="center">
-  <img src="./views/2v.png" alt="Desktop Screenshot 2" width="48%">
-  <img src="./views/3v.png" alt="Desktop Screenshot 3" width="48%">
+  <img src="./views/2e.png" alt="Desktop Screenshot 2" width="48%">
+  <img src="./views/3e.png" alt="Desktop Screenshot 3" width="48%">
+  <em></em>
+</p>
+
+<br>
+
+## Catppuccin
+<p align="center">
+  <img src="./views/1c.png" alt="Desktop Screenshot 1" width="80%">
+  <em></em>
+</p>
+
+<p align="center">
+  <img src="./views/2c.png" alt="Desktop Screenshot 2" width="48%">
+  <img src="./views/3c.png" alt="Desktop Screenshot 3" width="48%">
+  <em></em>
+</p>
+
+<br>
+
+## Gruvbox
+<p align="center">
+  <img src="./views/1g.png" alt="Desktop Screenshot 1" width="80%">
+  <em></em>
+</p>
+
+<p align="center">
+  <img src="./views/2g.png" alt="Desktop Screenshot 2" width="48%">
+  <img src="./views/3g.png" alt="Desktop Screenshot 3" width="48%">
   <em></em>
 </p>
 

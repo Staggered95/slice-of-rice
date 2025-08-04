@@ -3,17 +3,17 @@
  */
 
 /* --- Color Variables --- */
-@define-color window_background rgba(40, 40, 40, 0.9);
-@define-color window_border #fabd2f;
-@define-color input_bg #3c3836;
-@define-color input_fg #ebdbb2;
-@define-color input_border #504945;
-@define-color input_focus_border #fabd2f;
-@define-color entry_main_fg #ebdbb2;
+@define-color window_background rgba(30, 30, 46, 0.85);
+@define-color window_border #89b4fa;
+@define-color input_bg #313244;
+@define-color input_fg #cdd6f4;
+@define-color input_border #585b70;
+@define-color input_focus_border #89b4fa;
+@define-color entry_main_fg #cdd6f4;
 @define-color entry_main_bg ;
-@define-color entry_selected_bg #504945;
-@define-color entry_selected_fg #ebdbb2;
-@define-color entry_hover_bg #665c54;
+@define-color entry_selected_bg #585b70;
+@define-color entry_selected_fg #cdd6f4;
+@define-color entry_hover_bg #45475a;
 
 
 * {
