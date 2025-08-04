@@ -134,7 +134,7 @@ These dotfiles are designed for an Arch Linux-based system running the Hyprland 
 
 ##  Theming
 The theme can be changed at any time with the shortcut keys `MOD+CTRL+T`. To add a new theme:
-1.  Install the required GTK and Kvantum theme packages.
+1.  Install the required GTK theme packages.
 2.  Add a new entry with all the required metadata and color definitions to `~/.config/hypr/themes.json`.
 3.  The theme will automatically appear in the Wofi selection menu.
 
