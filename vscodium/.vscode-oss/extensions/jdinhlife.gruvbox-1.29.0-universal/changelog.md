@@ -1,3 +1,13 @@
+# [1.29.0](https://github.com/jdinhify/vscode-theme-gruvbox/compare/v1.28.0...v1.29.0) (2025-08-21)
+
+
+### Features
+
+* add colour for markdown header levels ([#146](https://github.com/jdinhify/vscode-theme-gruvbox/issues/146)) ([34274ec](https://github.com/jdinhify/vscode-theme-gruvbox/commit/34274ecace2c7041bc1956d46b79a41235d0780f))
+
+
+
+
 # [1.28.0](https://github.com/jdinhify/vscode-theme-gruvbox/compare/v1.27.0...v1.28.0) (2025-05-31)
 
 
@@ -284,16 +294,6 @@
 ### Bug Fixes
 
 * **readme:** update badges ([16b5772](https://github.com/jdinhify/vscode-theme-gruvbox/commit/16b57726a47b9d09156f906f77ddeff63d131f13))
-
-
-
-
-## [1.9.1](https://github.com/jdinhify/vscode-theme-gruvbox/compare/v1.9.0...v1.9.1) (2023-10-24)
-
-
-### Bug Fixes
-
-* **readme:** update badge url ([f06827d](https://github.com/jdinhify/vscode-theme-gruvbox/commit/f06827da79ea1579f2216e6a8fe334e382d791ed))
 
 
 

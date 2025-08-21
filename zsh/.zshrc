@@ -37,7 +37,7 @@ fi
 # Aliases (optional)
 alias cls="clear"
 alias update="sudo pacman -Syu"
-alias battery="cat /sys/class/power_supply/BAT0/capacity"
+alias battery="upower -i $(upower -e | grep 'BAT')"
 alias nighton='hyprctl hyprsunset temperature 3500'
 alias nightoff='hyprctl hyprsunset identity'
 alias code='vscodium'
@@ -66,3 +66,5 @@ export PATH=$PATH:/home/Shubham/.spicetify
 #eval "$(oh-my-posh init zsh --config /usr/share/oh-my-posh/themes/jblab_2021.omp.json)"
 #
 #eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/themes/everforest.omp.json)"
+
+

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 	<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
 		<Metadata>
-			<Identity Language="en-US" Id="gruvbox" Version="1.28.0" Publisher="jdinhlife" />
+			<Identity Language="en-US" Id="gruvbox" Version="1.29.0" Publisher="jdinhlife" />
 			<DisplayName>Gruvbox Theme</DisplayName>
 			<Description xml:space="preserve">Gruvbox Theme</Description>
 			<Tags>theme,color-theme,__web_extension</Tags>

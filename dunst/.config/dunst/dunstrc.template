@@ -539,6 +539,10 @@
     progress_bar_background = "__osd_progress_bg__"
     progress_bar_foreground = "__osd_progress_fg__"
 
+[kdeconnect_reveal_body]
+    appname = "kdeconnect"
+    hide_body = false
+
 
 
 

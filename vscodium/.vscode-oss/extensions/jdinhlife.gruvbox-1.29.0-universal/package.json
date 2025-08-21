@@ -2,7 +2,7 @@
 	"name": "gruvbox",
 	"displayName": "Gruvbox Theme",
 	"description": "Gruvbox Theme",
-	"version": "1.28.0",
+	"version": "1.29.0",
 	"author": "jdinhify (https://github.com/jdinhify)",
 	"publisher": "jdinhlife",
 	"engines": {
@@ -59,9 +59,9 @@
 		"id": "c6d564c4-ca8c-45ba-abf6-c85f2d1468d8",
 		"publisherDisplayName": "jdinhify",
 		"publisherId": "571210a8-f372-43c2-8b5a-018868d4ac96",
-		"installedTimestamp": 1754155419876,
+		"installedTimestamp": 1755768226501,
 		"targetPlatform": "universal",
-		"size": 1395788
+		"size": 1401160
 	},
 	"devDependencies": {
 		"@eslint/js": "^9.21.0",

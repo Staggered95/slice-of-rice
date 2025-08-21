@@ -9,20 +9,20 @@
   <property name="last-restore-tabs" type="bool" value="true"/>
   <property name="misc-exec-shell-scripts-by-default" type="string" value="THUNAR_EXECUTE_SHELL_SCRIPT_ASK"/>
   <property name="last-tabs-left" type="array">
-    <value type="string" value="file:///home/Shubham/dotfiles/views"/>
+    <value type="string" value="file:///mnt/REM/Atashi/Anime/Dorohedoro"/>
   </property>
   <property name="last-focused-tab-left" type="int" value="0"/>
   <property name="last-focused-tab-right" type="int" value="0"/>
-  <property name="last-show-hidden" type="bool" value="true"/>
+  <property name="last-show-hidden" type="bool" value="false"/>
   <property name="hidden-bookmarks" type="array">
     <value type="string" value="computer:///"/>
   </property>
   <property name="misc-archive-handler" type="string" value="file-roller"/>
   <property name="misc-symbolic-icons-in-sidepane" type="bool" value="false"/>
   <property name="misc-directory-specific-settings" type="bool" value="false"/>
-  <property name="last-sort-column" type="string" value="THUNAR_COLUMN_NAME"/>
+  <property name="last-sort-column" type="string" value="THUNAR_COLUMN_TYPE"/>
   <property name="last-sort-order" type="string" value="GTK_SORT_ASCENDING"/>
   <property name="last-details-view-zoom-level" type="string" value="THUNAR_ZOOM_LEVEL_38_PERCENT"/>
   <property name="last-details-view-column-widths" type="string" value="50,50,133,50,50,927,50,50,512,50,50,88,50,577"/>
-  <property name="last-side-pane" type="string" value="THUNAR_SIDEPANE_TYPE_HIDDEN_SHORTCUTS"/>
+  <property name="last-side-pane" type="string" value="THUNAR_SIDEPANE_TYPE_SHORTCUTS"/>
 </channel>
