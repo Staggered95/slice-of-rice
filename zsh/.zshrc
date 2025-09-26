@@ -29,10 +29,21 @@ plugins=(git z sudo archlinux)
 # Source OMZ
 #source $ZSH/oh-my-zsh.sh
 source ~/.config/p10k/powerlevel10k.zsh-theme
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 if [[ -f ~/.cache/ls_colors ]]; then
   source ~/.cache/ls_colors
 fi
+
+
+local_config_file="$HOME/.zshrc.local"
+
+# Check if the local file exists and source it
+if [ -f "$local_config_file" ]; then
+  source "$local_config_file"
+fi
+
+
 
 # Aliases (optional)
 alias cls="clear"
@@ -40,8 +51,12 @@ alias update="sudo pacman -Syu"
 alias battery="upower -i $(upower -e | grep 'BAT')"
 alias nighton='hyprctl hyprsunset temperature 3500'
 alias nightoff='hyprctl hyprsunset identity'
+alias hi='sh ~/Scripts/random_waifu.sh'
 alias code='vscodium'
 alias ls='ls --color=auto'
+#alias neofetch='neofetch --ascii_distro arch_small'
+alias start='sh ~/Scripts/dev-setup.sh'
+alias afc-backup='sh ~/vps_backups/pull_backup.sh'
 
 
 
@@ -57,14 +72,28 @@ export KDE_FORCE_DISABLE_PLATFORM_THEME=1
 
 export PATH=$PATH:/home/Shubham/.spicetify
 
-# To customize prompt, run `p10k configure` or edit ~/.config/hypr/themes/p10k/everforest_dark.
-#[[ ! -f ~/.config/hypr/themes/p10k/everforest_dark ]] || source ~/.config/hypr/themes/p10k/everforest_dark
-#
-#
-#
-# Hook for Oh My Posh
-#eval "$(oh-my-posh init zsh --config /usr/share/oh-my-posh/themes/jblab_2021.omp.json)"
-#
-#eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/themes/everforest.omp.json)"
+
+# For hey, a linux support
+hey() {
+	sh ~/Scripts/gemini-chat.sh "$@"
+}
+hey-reset() {
+	sh ~/Scripts/gemini-chat.sh --reset
+}
 
 
+# For the dev helper
+dev() {
+	~/Scripts/dev "$@"
+}
+dev-reset() {
+	~/Scripts/dev --reset
+}
+
+# For the otaku persona
+otaku() {
+	~/Scripts/otaku "$@"
+}
+otaku-reset() {
+	~/Scripts/otaku --reset
+}

@@ -2,12 +2,11 @@
     "layer": "top",
     "position": "top",
     "start-visible": false,
-    "output": "eDP-1",
     "id": "mainbar", 
     "height": 42,
     "modules-left": ["clock", "custom/netspeed", "custom/playing"],
     "modules-center": ["hyprland/workspaces"],
-    "modules-right": ["network", "bluetooth", "pulseaudio", "tray", "memory", "battery", "custom/power"],
+    "modules-right": ["network", "bluetooth", "pulseaudio", "tray","memory", "battery", "custom/power"],
 
     "hyprland/workspaces": {
         "format": "{name}",
@@ -111,15 +110,22 @@
         "on-click-middle": "playerctl previous"
     },
     "custom/netspeed": {
-    "format": "{}",
-    "exec": "sh ~/.config/hypr/scripts/netspeed.sh",
-    "interval": 2, 
-    "tooltip": false
+      "format": "{}",
+      "exec": "sh ~/.config/hypr/scripts/netspeed.sh",
+      "interval": 2, 
+      "tooltip": false
     },
     "custom/power": {
-    "format": "⏻",
-    "tooltip": false,
-    "on-click": "sh ~/.config/hypr/scripts/power_menu.sh"
+      "format": "⏻",
+      "tooltip": false,
+      "on-click": "sh ~/.config/hypr/scripts/power_menu.sh"
     },
+    "custom/nightmode": {
+      "format": "{text}",
+      "tooltip": true,
+      "on-click": "~/.config/hypr/scripts/night-mode.sh",
+      "exec": "~/.config/hypr/scripts/night-mode.sh",
+      "interval": 3600 
+    }
 
 }

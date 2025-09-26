@@ -51,6 +51,27 @@ gsettings set org.gnome.desktop.interface icon-theme "$icon_theme"
 gsettings set org.gnome.desktop.interface cursor-theme "$cursor_theme"
 gsettings set org.gnome.desktop.interface font-name "$font_name"
 
+# --- NEW: Explicitly set GTK2 theme for legacy apps ---
+GTK2_SETTINGS_FILE="$HOME/.gtkrc-2.0"
+{
+  echo "# GTK2 settings created by theme switcher"
+  echo "include \"/usr/share/themes/$gtk_theme/gtk-2.0/gtkrc\""
+  echo "gtk-theme-name=\"$gtk_theme\""
+  echo "gtk-icon-theme-name=\"$icon_theme\""
+  echo "gtk-cursor-theme-name=\"$cursor_theme\""
+  echo "gtk-font-name=\"$font_name\""
+} >"$GTK2_SETTINGS_FILE"
+
+# --- NEW: Explicitly set GTK3 theme for older apps like pavucontrol ---
+GTK3_SETTINGS_FILE="$HOME/.config/gtk-3.0/settings.ini"
+{
+  echo "[Settings]"
+  echo "gtk-theme-name=$gtk_theme"
+  echo "gtk-icon-theme-name=$icon_theme"
+  echo "gtk-cursor-theme-name=$cursor_theme"
+  echo "gtk-font-name=$font_name"
+} >"$GTK3_SETTINGS_FILE"
+
 # Hyprland
 hyprctl keyword general:col.active_border "$hyprland_active_border"
 hyprctl keyword general:col.inactive_border "$hyprland_inactive_border"
@@ -255,4 +276,12 @@ source ~/.cache/ls_colors
 /usr/bin/kill -SIGUSR1 $(pidof kitty)
 
 # --- Notify ---
-notify-send "Theme Changed" "Set to $name"
+# notify-send "Theme Changed" "Set to $name"
+#
+UPTIME=$(cut -d'.' -f1 /proc/uptime)
+
+# Only send notification if the system has been up for more than 30 seconds.
+# This avoids the notification on boot but shows it for manual theme changes.
+if [ "$UPTIME" -gt 30 ]; then
+  notify-send "Theme Changed" "Set to $name"
+fi

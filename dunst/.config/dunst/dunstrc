@@ -345,7 +345,8 @@
     # Otherwise the "#" and following would be interpreted as a comment.
     background = "#1e1e2e"
     foreground = "#cdd6f4"
-    frame_color = "#cdd6f4"
+    frame_color = "#313244"
+    highlight = "#1e1e2e, #cdd6f4"
     timeout = 4
     # Icon for notifications with low urgency
     default_icon = dialog-information
@@ -354,6 +355,7 @@
     background = "#89b4fa"
     foreground = "#1e1e2e"
     frame_color = "#cdd6f4"
+    highlight = "#89b4fa, #1e1e2e"
     timeout = 8
     override_pause_level = 30
     # Icon for notifications with normal urgency
@@ -363,6 +365,7 @@
     background = "#f38ba8"
     foreground = "#1e1e2e"
     frame_color = "#cdd6f4"
+    highlight = "#f38ba8, #1e1e2e"
     timeout = 0 # Sticky
     override_pause_level = 60
     # Icon for notifications with critical urgency
@@ -494,7 +497,11 @@
 #    appname = Pidgin
 #    summary = *twitter.com*
 #    urgency = normal
-#
+
+[vivaldi]
+    appname = "Vivaldi-stable"
+    timeout = 2
+
 #[stack-volumes]
 #    appname = "some_volume_notifiers"
 #    set_stack_tag = "volume"
@@ -539,6 +546,7 @@
     progress_bar_background = "#45475a"
     progress_bar_foreground = "#89b4fa"
 
+    
 [kdeconnect_reveal_body]
     appname = "kdeconnect"
     hide_body = false
