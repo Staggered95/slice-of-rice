@@ -10,6 +10,7 @@ nvim
 wofi
 dunst
 hyprpolkitagent
+polkit-gnome
 kitty
 zsh
 nwg-look

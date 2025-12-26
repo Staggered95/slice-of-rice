@@ -54,9 +54,9 @@ alias nightoff='hyprctl hyprsunset identity'
 alias hi='sh ~/Scripts/random_waifu.sh'
 alias code='vscodium'
 alias ls='ls --color=auto'
-#alias neofetch='neofetch --ascii_distro arch_small'
 alias start='sh ~/Scripts/dev-setup.sh'
 alias afc-backup='sh ~/vps_backups/pull_backup.sh'
+alias aria='sh ~/Scripts/project-aria.sh'
 
 
 
@@ -97,3 +97,15 @@ otaku() {
 otaku-reset() {
 	~/Scripts/otaku --reset
 }
+
+
+# Run kotofetch only on kitty fullscreen
+if [[ "$TERM" == "xterm-kitty" ]]; then
+    cols=$(tput cols)
+    rows=$(tput lines)
+
+    if (( cols >= 180 && rows >= 45 )); then
+        kotofetch
+    fi
+fi
+

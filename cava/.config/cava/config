@@ -15,11 +15,11 @@ mono_option = average
 # --- THEME SECTION ---
 
 [color]
-# background = '#cdd6f4'
-foreground = '#1e1e2e'
+# background = '#ebdbb2'
+foreground = '#282828'
 
 gradient = 1
 gradient_count = 3
-gradient_color_1 = '#cba6f7'
-gradient_color_2 = '#89b4fa'
-gradient_color_3 = '#94e2d5'
+gradient_color_1 = '#458588'
+gradient_color_2 = '#b8bb26'
+gradient_color_3 = '#fabd2f'

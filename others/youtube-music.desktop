@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=YouTube Music
+Exec=vivaldi-stable --app=https://music.youtube.com
+Icon=youtube-music
+Type=Application
+Categories=AudioVideo;Music;
+

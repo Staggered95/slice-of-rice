@@ -1,0 +1,10 @@
+#!/bin/bash
+# FILE: ~/Scripts/dev
+
+# Define the persona and its unique history file
+export GEMINI_PERSONA="You are an elite command-line assistant for an Arch Linux expert. Be extremely brief. Prioritize one-line commands. Omit explanations unless explicitly asked."
+export GEMINI_HISTORY_FILE="$HOME/.gemini_history_dev.json"
+
+# Call the engine with all the arguments this script received
+~/Scripts/gemini-engine.sh "$@"
+

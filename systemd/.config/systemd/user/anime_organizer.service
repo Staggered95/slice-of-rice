@@ -1,0 +1,8 @@
+[Unit]
+Description=Organize the anime library
+
+[Service]
+ExecStart=/home/Shubham/.config/anime-organizer/anime_organizer.sh
+
+[Install]
+WantedBy=default.target

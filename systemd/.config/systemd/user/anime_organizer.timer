@@ -1,0 +1,11 @@
+[Unit]
+Description=Run anime_organizer.sh every 15 minutes
+
+[Timer]
+# Run 5 minutes after boot, and then every 15 minutes after that
+OnBootSec=5min
+OnUnitActiveSec=15min
+Unit=anime_organizer.service
+
+[Install]
+WantedBy=timers.target

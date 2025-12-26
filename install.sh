@@ -1,34 +1,25 @@
 #!/bin/bash
 
-# ========================================================================================
-# Hyprland Dotfiles Installation Script by Shubham
-# A script to automate the setup of a complete, beautiful, and functional desktop.
-# ========================================================================================
+# --- Colors & Variables ---
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+RED='\033[0;31m'
+MAGENTA='\033[0;35m'
+BLUE='\033[0;34m'
+NC='\033[0m'
 
-# --- Stop on any error ---
-set -e
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+BACKUP_DIR="$HOME/dotfiles_backup_$(date +%Y%m%d_%H%M%S)"
 
-# --- Color Definitions for Logging ---
-BLACK="\033[0;30m"
-RED="\033[0;31m"
-GREEN="\033[0;32m"
-YELLOW="\033[0;33m"
-BLUE="\033[0;34m"
-MAGENTA="\033[0;35m"
-CYAN="\033[0;36m"
-WHITE="\033[0;37m"
-NC="\033[0m" # No Color
-
-# --- Logging Functions ---
-info() { echo -e "${CYAN}[INFO]${NC} $1"; }
+# --- Helper Functions ---
 success() { echo -e "${GREEN}[SUCCESS]${NC} $1"; }
 warn() { echo -e "${YELLOW}[WARNING]${NC} $1"; }
 error() {
   echo -e "${RED}[ERROR]${NC} $1"
   exit 1
 }
+info() { echo -e "${BLUE}[INFO]${NC} $1"; }
 
-# --- Helper Functions ---
 press_enter_to_continue() {
   echo -e "${MAGENTA}Press ENTER to continue...${NC}"
   read -r
@@ -39,154 +30,178 @@ press_enter_to_continue() {
 # ========================================================================================
 
 sudo -v
-while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done &> /dev/null &
-
+while true; do
+  sudo -n true
+  sleep 60
+  kill -0 "$$" || exit
+done &>/dev/null &
 
 # --- 1. GATHER USER INFORMATION ---
-echo "Welcome to Slice-of-Rice installation"
+echo -e "${BLUE}Welcome to Slice-of-Rice installation (Stow Edition)${NC}"
 press_enter_to_continue
-read -p "Do you want to install and configure GRUB? (y/n): " CONFIGURE_GRUB
-
+read -p "Do you want to configure GRUB theme? (y/n): " CONFIGURE_GRUB
+read -p "Do you want to install YT Music Vivaldi PWA? (y/n): " CONFIGURE_YTM
 
 # --- 2. VERIFY PACKAGE LISTS ---
-info "Verifying that package lists exist..."
-if [ ! -f "./fresh/pkglist.txt" ] || [ ! -f "./fresh/pkglist_aur.txt" ]; then
-  error "Package lists (pkglist.txt or pkglist_aur.txt) not found! Please create them first."
+info "Verifying package lists..."
+if [ ! -f "$SCRIPT_DIR/fresh/pkglist.txt" ] || [ ! -f "$SCRIPT_DIR/fresh/pkglist_aur.txt" ]; then
+  error "Package lists not found in $SCRIPT_DIR/fresh/!"
 fi
 success "Package lists found."
 
-
 # --- 3. INSTALL PACKAGES ---
-info "Installing packages from official repositories..."
-sudo pacman -Syu --needed --noconfirm - <./fresh/pkglist.txt
+info "Installing packages..."
+sudo pacman -Syu --needed --noconfirm base-devel git stow
+sudo pacman -Syu --needed --noconfirm - <"$SCRIPT_DIR/fresh/pkglist.txt"
 
-info "Checking for AUR helper (yay)..."
+info "Checking for AUR helper..."
 if ! command -v yay &>/dev/null; then
-  warn "'yay' not found. Attempting to install it."
+  warn "'yay' not found. Installing..."
   git clone https://aur.archlinux.org/yay.git /tmp/yay
   (cd /tmp/yay && makepkg -si --noconfirm)
+  rm -rf /tmp/yay
 fi
 
-info "Installing packages from the AUR..."
-yay -S --needed --noconfirm - <./fresh/pkglist_aur.txt
-success "All packages installed."
+info "Installing AUR packages..."
+yay -S --needed --noconfirm - <"$SCRIPT_DIR/fresh/pkglist_aur.txt"
 
-# --- 4. ENABLE SYSTEM SERVICES ---
-info "Enabling essential systemd services..."
-sudo systemctl enable sddm.service
-sudo systemctl enable NetworkManager.service
-sudo systemctl enable bluetooth.service
-# Add any other system-level services here
-success "Services enabled."
+# --- 4. PREPARE & BACKUP VSCodium ---
+# We do this BEFORE stowing to prevent conflicts
+info "Checking VSCodium User config..."
+VSCODE_USER_DIR="$HOME/.config/VSCodium/User"
+mkdir -p "$VSCODE_USER_DIR"
 
-info "Enabling essential user services..."
-systemctl --user enable hyprpolkitagent # If you decide to use this one
-success "User services enabled."
+# If real files exist (not symlinks), back them up so Stow doesn't fail
+if [ -f "$VSCODE_USER_DIR/settings.json" ] && [ ! -L "$VSCODE_USER_DIR/settings.json" ]; then
+  warn "Existing VSCodium settings found. Backing up..."
+  mkdir -p "$BACKUP_DIR/VSCodium"
+  mv "$VSCODE_USER_DIR/settings.json" "$BACKUP_DIR/VSCodium/"
+  mv "$VSCODE_USER_DIR/keybindings.json" "$BACKUP_DIR/VSCodium/" 2>/dev/null
+  success "VSCodium config backed up to $BACKUP_DIR"
+fi
 
-# --- 5. COPY CONFIGURATION FILES ---
-info "Copying configuration files..."
-# This uses rsync for a robust copy. It creates parent directories and overwrites existing files.
-# The structure assumes your dotfiles repo has folders like 'hypr', 'kitty', etc.
-CONFIG_SOURCE_DIR="$(pwd)"
-CONFIG_DEST_DIR="$HOME/.config"
+# --- 5. STOW CONFIGURATION FILES ---
+info "Stowing configuration files..."
 
-# A list of all the config folders to copy
-CONFIG_FOLDERS=(
-  "hypr"
-  "kitty"
-  "waybar"
-  "wofi"
-  "dunst"
-  "cava"
-  "nvim"
-  "p10k"
-  "Thunar"
-  "neofetch"
-  "spicetify"
-  "vivid"
-  "xfce4"
-  # Add other .config folders here
+mkdir -p "$HOME/.config"
+
+# List of stow packages
+# NOTE: Ensure you have a 'Scripts' folder in your dotfiles repo for your ~/Scripts
+STOW_FOLDERS=(
+  "hypr" "kitty" "waybar" "wofi" "dunst" "cava"
+  "nvim" "Thunar" "neofetch" "spicetify" "vivid" "xfce4"
+  "zsh" "vscodium" "Scripts" "anime-organizer" "systemd"
 )
 
-mkdir -p "$CONFIG_DEST_DIR"
-for folder in "${CONFIG_FOLDERS[@]}"; do
-  if [ -d "$CONFIG_SOURCE_DIR/$folder/.config/$folder" ]; then
-    info "Copying $folder configuration..."
-    mkdir -p "$CONFIG_DEST_DIR/$folder/"
-    rsync -av --delete "$CONFIG_SOURCE_DIR/$folder/.config/$folder/" "$CONFIG_DEST_DIR/$folder/"
+cd "$SCRIPT_DIR" || error "Could not enter script directory"
+
+for folder in "${STOW_FOLDERS[@]}"; do
+  if [ -d "$folder" ]; then
+    info "Stowing $folder..."
+
+    # Conflict check: If a real config folder exists (not a symlink),
+    # stow will fail. We must back it up first.
+    TARGET_DIR="$HOME/.config/$folder"
+    # Special case handling for folders that don't map to .config directly if needed
+    if [ "$folder" == "Scripts" ]; then TARGET_DIR="$HOME/Scripts"; fi
+
+    if [ -d "$TARGET_DIR" ] && [ ! -L "$TARGET_DIR" ]; then
+      warn "Existing config found for $folder. Backing up..."
+      mkdir -p "$BACKUP_DIR"
+      mv "$TARGET_DIR" "$BACKUP_DIR/${folder}_bak"
+    fi
+
+    # -R (Restow) refreshes links
+    stow -R -t "$HOME" "$folder"
   else
-    warn "Configuration for '$folder' not found in the expected structure. Skipping."
+    warn "Folder '$folder' not found. Skipping."
   fi
 done
 
-# Copying files from the root of the home directory (like .zshrc)
-info "Copying Zsh and p10k configurations to home directory..."
-rsync -av "$CONFIG_SOURCE_DIR/zsh/." "$HOME/"
-rsync -av "$CONFIG_SOURCE_DIR/vscodium/." "$HOME/"
-mkdir -p "$HOME/.themes"
-rsync -av "$CONFIG_SOURCE_DIR/assets/themes/." "$HOME/.themes"
-mkdir -p "$HOME/.local/share/icons"
-rsync -av "$CONFIG_SOURCE_DIR/assets/icons/." "$HOME/.local/share/icons"
-mkdir -p "$HOME/.local/share/fonts"
-rsync -av "$CONFIG_SOURCE_DIR/assets/fonts/." "$HOME/.local/share/fonts"
-VSCODIUM_PATH= "$HOME/.config/VSCodium/User"
-mkdir -p "$VSCODIUM"
-touch "$VSCODIUM_PATH/settings.json"
+# --- 6. ZSH AUTOSUGGESTIONS ---
+info "Setting up Zsh Autosuggestions..."
+ZSH_PLUGIN_DIR="$HOME/.zsh/zsh-autosuggestions"
+if [ ! -d "$ZSH_PLUGIN_DIR" ]; then
+  mkdir -p "$HOME/.zsh"
+  git clone https://github.com/zsh-users/zsh-autosuggestions "$ZSH_PLUGIN_DIR"
+  success "Zsh autosuggestions installed."
+else
+  success "Zsh autosuggestions already exists."
+fi
 
-success "Configuration files copied."
+# --- 7. ANIMIRU & SERVICES ---
+info "Enabling system services..."
+sudo systemctl enable --now sddm.service || warn "SDDM issue"
+sudo systemctl enable --now NetworkManager.service || warn "NetworkManager issue"
+sudo systemctl enable --now bluetooth.service || warn "Bluetooth issue"
 
-# --- 6. INSTALL GRUB THEME (OPTIONAL) ---
-if [[ "$CONFIGURE_GRUB" == "y" || "$CONFIGURE_GRUB" == "Y" ]]; then
-  info "Installing and configuring GRUB theme..."
-  # This assumes you have a 'grub' folder in your dotfiles
+info "Enabling user services (Animiru)..."
+# Reload daemon to ensure it sees the new stowed unit files
+systemctl --user daemon-reload
+systemctl --user enable --now anime_organizer.timer || warn "Could not enable Anime Timer"
+systemctl --user enable --now anime_organizer.service || warn "Could not enable Anime Service"
+success "User services enabled."
+
+# --- 8. GRUB THEME ---
+if [[ "$CONFIGURE_GRUB" =~ ^[Yy]$ ]]; then
+  info "Configuring GRUB..."
   if [ -d "grub" ]; then
-    grub install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
     sudo mkdir -p /boot/grub/themes/
-    sudo cp -r ./grub/* /boot/grub/themes/
-    # Define the theme path and the config file
+    sudo cp -r "grub/"* /boot/grub/themes/
+
     THEME_PATH="/boot/grub/themes/lain/theme.txt"
     CONFIG_FILE="/etc/default/grub"
 
-    # Check if a GRUB_THEME line already exists (commented or not)
-    if grep -q "^#\?GRUB_THEME=" "$CONFIG_FILE"; then
-      # If it exists, use sed to find that line (whether it's commented or not)
-      # and replace it with the new, correct, uncommented line.
-      sudo sed -i "s|^#\?GRUB_THEME=.*|GRUB_THEME=\"$THEME_PATH\"|" "$CONFIG_FILE"
+    if grep -q "^GRUB_THEME=" "$CONFIG_FILE"; then
+      sudo sed -i "s|^GRUB_THEME=.*|GRUB_THEME=\"$THEME_PATH\"|" "$CONFIG_FILE"
+    elif grep -q "^#GRUB_THEME=" "$CONFIG_FILE"; then
+      sudo sed -i "s|^#GRUB_THEME=.*|GRUB_THEME=\"$THEME_PATH\"|" "$CONFIG_FILE"
     else
-      # If the line does not exist at all, append it to the end of the file.
       echo "GRUB_THEME=\"$THEME_PATH\"" | sudo tee -a "$CONFIG_FILE"
     fi
+
     sudo grub-mkconfig -o /boot/grub/grub.cfg
-    success "GRUB theme installed."
   else
-    warn "GRUB theme folder not found in dotfiles. Skipping."
+    warn "GRUB folder not found."
   fi
-else
-  info "Skipping GRUB theme installation as requested."
 fi
 
-# --- 7. FINAL TOUCHES ---
+# --- 9. FINAL TOUCHES ---
 info "Applying final touches..."
 
-# Set hostname
-# sudo hostnamectl set-hostname "$HOSTNAME"
-
-# Change default shell to Zsh
-if [ "$SHELL" != "/bin/zsh" ]; then
-  if chsh -s $(which zsh); then
-    success "Default shell changed to Zsh."
+# YT Music Desktop File
+if [[ "$CONFIGURE_YTM" =~ ^[Yy]$ ]]; then
+  info "Installing YT Music Desktop file..."
+  mkdir -p ~/.local/share/applications/
+  if [ -f "others/youtube-music.desktop" ]; then
+    cp "others/youtube-music.desktop" ~/.local/share/applications/
   else
-    error "Failed to change shell. Please do it manually with 'chsh -s $(which zsh)'."
+    warn "youtube-music.desktop not found in 'others' folder."
   fi
-else
-  success "Zsh is already the default shell."
 fi
 
-sh "$HOME/.config/hypr/scripts/apply-theme.sh" "everforest_dark"
+# Assets
+info "Copying assets..."
+mkdir -p "$HOME/.themes" "$HOME/.local/share/icons" "$HOME/.local/share/fonts"
+[ -d "assets/themes" ] && rsync -av "assets/themes/" "$HOME/.themes/"
+[ -d "assets/icons" ] && rsync -av "assets/icons/" "$HOME/.local/share/icons/"
+[ -d "assets/fonts" ] && rsync -av "assets/fonts/" "$HOME/.local/share/fonts/"
 
-success "Final touches complete."
+# Change Shell
+if [ "$SHELL" != "$(which zsh)" ]; then
+  chsh -s "$(which zsh)" || warn "Change shell manually."
+fi
 
-# --- 8. FINISH ---
-success "Your beautiful Hyprland desktop is now fully installed!"
-info "It is highly recommended to REBOOT your system now to ensure all changes take effect."
-echo "Thank you for using this script!"
+# Apply Theme
+THEME_SCRIPT="$HOME/.config/hypr/scripts/apply-theme.sh"
+if [ -f "$THEME_SCRIPT" ]; then
+  chmod +x "$THEME_SCRIPT"
+  "$THEME_SCRIPT" "everforest_dark"
+fi
+
+# Rebuild font cache
+fc-cache -fv &>/dev/null
+
+success "Slice-of-Rice installation complete!"
+info "Backup of old configs stored in: $BACKUP_DIR"
+info "Please reboot your system."
