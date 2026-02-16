@@ -9,7 +9,7 @@
       "default_lockpaper": "slice-of-rice/assets/walls/ev_d_lock.jpg",
       "cursor_theme": "Bibata-Original-Ice",
       "cursor_size": "26",
-      "font_name": "IPAPGothic Regular 12",
+      "font_name": "IBM Plex Sans 12",
       "vs_codium_theme": "Everforest Dark",
       "vivid_theme": "snazzy",
       "nvim_theme": "everforest",
@@ -22,6 +22,8 @@
       },
       "waybar": {
 	      "bar_bg": "rgba(31, 35, 40, 0.0)",
+        "font_name": "BlexMono Nerd Font",
+        "font_size": "14",
         "main_bg": "#3C4841",
         "main_fg": "#A7C080",
         "active_bg": "#A7C080",
@@ -44,8 +46,8 @@
         "blink_fg": "#E67E80"    
       },
       "kitty": {
-        "font_family": "JetBrainsMono Nerd Font",
-        "font_size": "11.5",
+        "font_family": "IBM Plex Mono",
+        "font_size": "12",
         "background_opacity": "0.85",
         "window_padding_width": "24",
         "foreground": "#d3c6aa",
@@ -96,7 +98,7 @@
         "entry_main_bg": "#D3C6AA",
         "entry_main_fg": "#A7C080",
         "entry_selected_bg": "#A7C080",
-        "entry_selected_fg": "#414B5O",
+        "entry_selected_fg": "#414B50",
         "entry_hover_bg": "#83C092"
       },
       "p10k": {
@@ -134,7 +136,7 @@
       "default_lockpaper": "slice-of-rice/assets/walls/ev_l_lock.jpg",
       "cursor_theme": "Bibata-Modern-Classic",
       "cursor_size": "26",
-      "font_name": "IPAPGothic Regular 12",
+      "font_name": "IBM Plex Sans 12",
       "vs_codium_theme": "Everforest Light",
       "vivid_theme": "ayu",
       "nvim_theme": "everforest",
@@ -147,6 +149,8 @@
       },
       "waybar": {
 	      "bar_bg": "rgba(243, 234, 211, 0.0)",
+        "font_name": "BlexMono Nerd Font",
+        "font_size": "14",
         "main_bg": "#C7E07B",
         "main_fg": "#5C6A72",
         "active_bg": "#8DA101",
@@ -169,8 +173,8 @@
         "blink_fg": "#5C6A72"       
       },
       "kitty": {
-        "font_family": "JetBrainsMono Nerd Font",
-        "font_size": "11.5",
+        "font_family": "IBM Plex Mono",
+        "font_size": "12",
         "background_opacity": "0.85",
         "window_padding_width": "24",
         "foreground": "#5C6A72",
@@ -193,7 +197,7 @@
         "color13": "#DF69BA",
         "color6": "#35A77C",
         "color14": "#35A77C",
-        "color7": "#5CGA72",
+        "color7": "#5C6A72",
         "color15": "#5C6A72"
       },
       "dunst": {
@@ -258,7 +262,7 @@
       "default_lockpaper": "slice-of-rice/assets/walls/mocha_d_lock.png",
       "cursor_theme": "Bibata-Modern-Classic",
       "cursor_size": "26",
-      "font_name": "IPAPGothic Regular 12",
+      "font_name": "Open Sans 12",
       "vs_codium_theme": "Catppuccin Mocha",
       "vivid_theme": "catppuccin-mocha",
       "nvim_theme": "catppuccin",
@@ -271,6 +275,8 @@
       },
       "waybar": {
         "bar_bg": "rgba(30, 30, 46, 0.0)",
+        "font_name": "JetBrainsMono Nerd Font",
+        "font_size": "14",
         "main_bg": "#313244",
         "main_fg": "#cdd6f4",
         "active_bg": "#89b4fa",
@@ -294,7 +300,7 @@
       },
       "kitty": {
         "font_family": "JetBrainsMono Nerd Font",
-        "font_size": "11.5",
+        "font_size": "12",
         "background_opacity": "0.85",
         "window_padding_width": "24",
         "foreground": "#cdd6f4",
@@ -381,7 +387,7 @@
       "default_lockpaper": "slice-of-rice/assets/walls/latte_l_lock.jpg",
       "cursor_theme": "Bibata-Original-Ice",
       "cursor_size": "26",
-      "font_name": "IPAPGothic Regular 12",
+      "font_name": "Open Sans 12",
       "vs_codium_theme": "Catppuccin Latte",
       "vivid_theme": "catppuccin-latte",
       "nvim_theme": "catppuccin",
@@ -395,6 +401,8 @@
       },
       "waybar": {
         "bar_bg": "rgba(239, 241, 245, 0.0)",
+        "font_name": "JetBrainsMono Nerd Font",
+        "font_size": "14",
         "main_bg": "#ccd0da",
         "main_fg": "#4c4f69",
         "active_bg": "#8839ef",
@@ -418,7 +426,7 @@
       },
       "kitty": {
         "font_family": "JetBrainsMono Nerd Font",
-        "font_size": "11.5",
+        "font_size": "12",
         "background_opacity": "0.4",
         "window_padding_width": "24",
         "foreground": "#4c4f69",
@@ -500,12 +508,12 @@
     "name": "Gruvbox Dark",
     "metadata": {
       "gtk_theme": "Gruvbox-Material-Dark",
-      "icon_theme": "Colloid-Gruvbox-Dark",
+      "icon_theme": "Gruvbox-Plus-Dark",
       "default_wallpaper": "slice-of-rice/assets/walls/gr_d.png",
       "default_lockpaper": "slice-of-rice/assets/walls/gr_d_lock.png",
       "cursor_theme": "Bibata-Original-Ice",
       "cursor_size": "26",
-      "font_name": "IPAPGothic Regular 12",
+      "font_name": "IBM Plex Sans Medium 12",
       "vs_codium_theme": "Gruvbox Dark Medium",
       "vivid_theme": "gruvbox-dark",
       "nvim_theme": "gruvbox",
@@ -518,6 +526,8 @@
       },
       "waybar": {
         "bar_bg": "rgba(40, 40, 40, 0)",
+        "font_name": "Mononoki Nerd Font",
+        "font_size": "14",
         "main_bg": "#3c3836",
         "main_fg": "#ebdbb2",
         "active_bg": "#b8bb26",
@@ -540,8 +550,8 @@
         "blink_fg": "#fb4934"
       },
       "kitty": {
-        "font_family": "JetBrainsMono Nerd Font",
-        "font_size": "11.5",
+        "font_family": "Mononoki Nerd Font",
+        "font_size": "13",
         "background_opacity": "0.85",
         "window_padding_width": "24",
         "foreground": "#ebdbb2",
@@ -568,7 +578,7 @@
         "color15": "#ebdbb2"
       },
       "dunst": {
-        "icon_theme": "Colloid-Gruvbox-Dark",
+        "icon_theme": "Gruvbox-Plus-Dark",
         "urge_low_bg": "#282828",
         "urge_low_fg": "#ebdbb2",
         "urge_low_frame": "#504945",
@@ -623,12 +633,12 @@
     "name": "Gruvbox Light",
     "metadata": {
       "gtk_theme": "Gruvbox-Light-Medium",
-      "icon_theme": "Colloid-Gruvbox-Light",
+      "icon_theme": "Gruvbox-Plus-Light",
       "default_wallpaper": "slice-of-rice/assets/walls/gr_l.jpg",
       "default_lockpaper": "slice-of-rice/assets/walls/gr_l_lock.png",
       "cursor_theme": "Bibata-Modern-Classic",
       "cursor_size": "25",
-      "font_name": "IPAPGothic Regular 12",
+      "font_name": "IBM Plex Sans Medium 12",
       "vs_codium_theme": "Gruvbox Light Medium",
       "vivid_theme": "gruvbox-light",
       "nvim_theme": "gruvbox",
@@ -641,6 +651,8 @@
       },
       "waybar": {
         "bar_bg": "rgba(251, 241, 199, 0)",
+        "font_name": "Mononoki Nerd Font",
+        "font_size": "14",
         "main_bg": "#d5c4a1",
         "main_fg": "#3c3836",
         "active_bg": "#458588",
@@ -663,8 +675,8 @@
         "blink_fg": "#cc241d"
       },
       "kitty": {
-        "font_family": "JetBrainsMono Nerd Font",
-        "font_size": "11.5",
+        "font_family": "Mononoki Nerd Font",
+        "font_size": "13",
         "background_opacity": "0.95",
         "window_padding_width": "24",
         "foreground": "#3c3836",
@@ -691,7 +703,7 @@
         "color15": "#3c3836"
       },
       "dunst": {
-        "icon_theme": "Colloid-Gruvbox-Light",
+        "icon_theme": "Gruvbox-Plus-Light",
         "urge_low_bg": "#fbf1c7",
         "urge_low_fg": "#3c3836",
         "urge_low_frame": "#d5c4a1",

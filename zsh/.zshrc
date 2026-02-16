@@ -57,7 +57,8 @@ alias ls='ls --color=auto'
 alias start='sh ~/Scripts/dev-setup.sh'
 alias afc-backup='sh ~/vps_backups/pull_backup.sh'
 alias aria='sh ~/Scripts/project-aria.sh'
-
+alias runc='sh ~/Scripts/comprun.sh'
+alias auto='sh ~/auto.sh'
 
 
 # Useful environment tweaks
@@ -108,4 +109,5 @@ if [[ "$TERM" == "xterm-kitty" ]]; then
         kotofetch
     fi
 fi
+
 

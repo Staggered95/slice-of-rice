@@ -25,10 +25,10 @@ fi
 
 if [ ! -f "$HISTORY_FILE" ]; then
     jq -n --arg instruction "$SYSTEM_INSTRUCTION" \
-       '[
+        '[
          {"role": "user", "parts": [{"text": $instruction}]},
          {"role": "model", "parts": [{"text": "Understood."}]}
-       ]' > "$HISTORY_FILE"
+       ]' >"$HISTORY_FILE"
 fi
 
 if [ $# -gt 0 ]; then
@@ -41,9 +41,9 @@ if [ -z "$USER_PROMPT" ]; then
     exit 0
 fi
 
-API_URL="https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}"
+API_URL="https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}"
 JSON_PAYLOAD=$(jq -n --arg user_prompt "$USER_PROMPT" --slurpfile history "$HISTORY_FILE" \
-                  '{"contents": ($history[0] + [{"role": "user", "parts": [{"text": $user_prompt}]}])}')
+    '{"contents": ($history[0] + [{"role": "user", "parts": [{"text": $user_prompt}]}])}')
 
 API_RESPONSE=$(curl -s -H "Content-Type: application/json" -X POST -d "$JSON_PAYLOAD" "$API_URL")
 MODEL_RESPONSE_TEXT=$(echo "$API_RESPONSE" | jq -r '.candidates[0].content.parts[0].text')
@@ -57,7 +57,7 @@ fi
 
 jq --arg user_prompt "$USER_PROMPT" --arg model_response "$MODEL_RESPONSE_TEXT" \
     '. + [{"role": "user", "parts": [{"text": $user_prompt}]}, {"role": "model", "parts": [{"text": $model_response}]}]' \
-    "$HISTORY_FILE" > "$HISTORY_FILE.tmp" && mv "$HISTORY_FILE.tmp" "$HISTORY_FILE"
+    "$HISTORY_FILE" >"$HISTORY_FILE.tmp" && mv "$HISTORY_FILE.tmp" "$HISTORY_FILE"
 
 # Prints colored text wrapped in a markdown block
 printf "${CYAN}´´´markdown\n%s\n´´´${RESET}\n" "$MODEL_RESPONSE_TEXT"

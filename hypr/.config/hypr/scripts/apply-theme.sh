@@ -45,11 +45,57 @@ fi
 sleep 1
 
 # --- Apply Settings ---
+
+# --- Function to update system-wide Fontconfig (FORCE MODE) ---
+# update_font_config() {
+#   local font_family="$1"
+#   local font_conf="$HOME/.config/fontconfig/fonts.conf"
+
+#   mkdir -p "$(dirname "$font_conf")"
+
+#   # We use <match target="pattern"> with <edit mode="assign">.
+#   # This forcefully overwrites the default "sans-serif" bucket.
+#   cat >"$font_conf" <<EOF
+# <?xml version='1.0'?>
+# <!DOCTYPE fontconfig SYSTEM 'fonts.dtd'>
+# <fontconfig>
+#   <match target="pattern">
+#     <test qual="any" name="family"><string>sans-serif</string></test>
+#     <edit name="family" mode="assign" binding="strong">
+#       <string>$font_family</string>
+#     </edit>
+#   </match>
+
+#   <match target="pattern">
+#     <test qual="any" name="family"><string>serif</string></test>
+#     <edit name="family" mode="assign" binding="strong">
+#       <string>$font_family</string>
+#     </edit>
+#   </match>
+
+#   <match target="pattern">
+#     <test qual="any" name="family"><string>monospace</string></test>
+#     <edit name="family" mode="assign" binding="strong">
+#       <string>$font_family</string>
+#     </edit>
+#   </match>
+# </fontconfig>
+# EOF
+
+#   # Update cache
+#   fc-cache -r >/dev/null 2>&1
+#   echo ":: Fontconfig forced to $font_family"
+# }
+
 # GTK
 gsettings set org.gnome.desktop.interface gtk-theme "$gtk_theme"
 gsettings set org.gnome.desktop.interface icon-theme "$icon_theme"
 gsettings set org.gnome.desktop.interface cursor-theme "$cursor_theme"
 gsettings set org.gnome.desktop.interface font-name "$font_name"
+
+# TEMP_FONT=$(echo "$font_name" | sed 's/ [0-9]\+$//')
+# FONT_FAMILY=$(echo "$TEMP_FONT" | sed -E 's/ (Regular|Medium|Bold|Italic|Light|Book|SemiBold|ExtraBold|Heavy|Black|Thin|Condensed|Oblique)//g' | xargs)
+# update_font_config "$FONT_FAMILY"
 
 # --- NEW: Explicitly set GTK2 theme for legacy apps ---
 GTK2_SETTINGS_FILE="$HOME/.gtkrc-2.0"
@@ -112,7 +158,9 @@ fi
 # Waybar
 WAYBAR_TEMPLATE="$HOME/.config/waybar/style.css.template"
 WAYBAR_STYLE="$HOME/.config/waybar/style.css"
-sed -e "s|__bar_bg__|$waybar_bar_bg|g" \
+sed -e "s|__font_family__|$waybar_font_name|g" \
+  -e "s|__font_size__|$waybar_font_size|g" \
+  -e "s|__bar_bg__|$waybar_bar_bg|g" \
   -e "s|__main_bg__|$waybar_main_bg|g" \
   -e "s|__main_fg__|$waybar_main_fg|g" \
   -e "s|__active_bg__|$waybar_active_bg|g" \

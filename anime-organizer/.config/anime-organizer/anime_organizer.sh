@@ -31,6 +31,37 @@ fi
 
 mkdir -p "$LIBRARY_DIR"
 
+# Clean-up
+log "Authoritative cleanup: removing anime not present in downloads..."
+
+# Collect anime names from provider/anime directories
+mapfile -t existing_anime < <(
+  find "$DOWNLOADS_DIR" -mindepth 3 -maxdepth 3 -type d | while IFS= read -r dir; do
+    base=$(basename "$dir")
+    # SAME normalization as creation
+    echo "$base" |
+      sed 's/\[[^]]*\]//g' |
+      sed 's/ *$//'
+  done | sort -u
+)
+
+# Remove library entries not present in downloads
+find "$LIBRARY_DIR" -mindepth 1 -maxdepth 1 -type d | while IFS= read -r anime_dir; do
+  anime_name=$(basename "$anime_dir")
+
+  if ! printf '%s\n' "${existing_anime[@]}" | grep -qxF "$anime_name"; then
+    rm -r "$anime_dir"
+    log "Removed anime (no longer in downloads): $anime_name"
+  fi
+done
+
+echo "ALL symlinks:"
+find "$LIBRARY_DIR" -type l -print
+
+echo
+echo "ONLY valid symlinks:"
+find "$LIBRARY_DIR" -xtype l -print
+
 find "$DOWNLOADS_DIR" -type f \( -name "*.mp4" -o -name "*.mkv" \) | while IFS= read -r video_path; do
 
   video_filename=$(basename "$video_path")

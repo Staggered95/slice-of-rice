@@ -28,8 +28,8 @@
 
 
 * {
-    font-family: "IPAGothic", "JetBrains Mono Nerd Font", sans-serif;
-    font-size: 14px;
+    font-family: "__font_family__", "JetBrains Mono Nerd Font", sans-serif;
+    font-size: __font_size__px;
     border: none;
     border-radius: 0;
 }
