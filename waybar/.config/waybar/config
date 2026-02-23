@@ -6,7 +6,7 @@
     "height": 42,
     "modules-left": ["clock", "custom/netspeed", "custom/playing"],
     "modules-center": ["hyprland/workspaces"],
-    "modules-right": ["network", "bluetooth", "pulseaudio", "tray","memory", "battery", "custom/power"],
+    "modules-right": ["custom/blink-reminder", "network", "bluetooth", "pulseaudio", "tray","memory", "battery", "custom/power"],
 
     "hyprland/workspaces": {
         "format": "{name}",
@@ -114,6 +114,12 @@
       "exec": "sh ~/.config/hypr/scripts/netspeed.sh",
       "interval": 2, 
       "tooltip": false
+    },
+    "custom/blink-reminder": {
+        "exec": "~/.config/hypr/scripts/blink-reminder.sh",
+        "return-type": "json",
+        "format": "{}",
+        "tooltip": false
     },
     "custom/power": {
       "format": "⏻",

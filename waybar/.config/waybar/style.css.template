@@ -25,6 +25,7 @@
 @define-color blink_fg __blink_fg__;
 @define-color disabled_bg __disabled_bg__;
 @define-color disabled_fg __disabled_fg__;
+@define-color blink_reminder_fg __blink_reminder_fg__;
 
 
 * {
@@ -175,4 +176,27 @@ window#waybar.visible {
         background-color: @blink_bg;
         color: @blink_fg;
     }
+}
+
+
+/* Define the fade in and out animation */
+@keyframes fade-in-out {
+    0% { opacity: 0; }
+    50% { opacity: 1; color: @blink_reminder_fg; }
+    100% { opacity: 0; }
+}
+
+/* Styling for when the reminder is active */
+#custom-blink-reminder.blinking {
+    animation: fade-in-out 2s ease-in-out infinite; /* Fades in and out every 2 seconds */
+    font-size: 22px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+/* Hide the module completely so it doesn't take up space when inactive */
+#custom-blink-reminder.hidden {
+    font-size: 0px;
+    padding: 0px;
+    margin: 0px;
 }

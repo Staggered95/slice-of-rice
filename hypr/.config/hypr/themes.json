@@ -43,7 +43,8 @@
         "power_bg": "#E67E80",
         "power_fg": "#293136",
         "blink_bg": "#D3C6AA",
-        "blink_fg": "#E67E80"    
+        "blink_fg": "#E67E80",
+        "blink_reminder_fg": "#7FBBB3"
       },
       "kitty": {
         "font_family": "IBM Plex Mono",
@@ -170,7 +171,8 @@
         "power_bg": "#F85552",
         "power_fg": "#F1E4C5",
         "blink_bg": "#F85552",
-        "blink_fg": "#5C6A72"       
+        "blink_fg": "#5C6A72",
+        "blink_reminder_fg": "#3A94C5"
       },
       "kitty": {
         "font_family": "IBM Plex Mono",
@@ -296,7 +298,8 @@
         "power_bg": "#f38ba8",
         "power_fg": "#1e1e2e",
         "blink_bg": "#cdd6f4",
-        "blink_fg": "#f38ba8"
+        "blink_fg": "#f38ba8",
+        "blink_reminder_fg": "#94e2d5"
       },
       "kitty": {
         "font_family": "JetBrainsMono Nerd Font",
@@ -422,7 +425,8 @@
         "power_bg": "#dd7878",
         "power_fg": "#eff1f5",
         "blink_bg": "#4c4f69",
-        "blink_fg": "#d20f39"
+        "blink_fg": "#d20f39",
+        "blink_reminder_fg": "#1e66f5"
       },
       "kitty": {
         "font_family": "JetBrainsMono Nerd Font",
@@ -547,7 +551,8 @@
         "power_bg": "#fb4934",
         "power_fg": "#ebdbb2",
         "blink_bg": "#ebdbb2",
-        "blink_fg": "#fb4934"
+        "blink_fg": "#fb4934",
+        "blink_reminder_fg": "#458588"
       },
       "kitty": {
         "font_family": "Mononoki Nerd Font",
@@ -672,7 +677,8 @@
         "power_bg": "#cc241d",
         "power_fg": "#fbf1c7",
         "blink_bg": "#3c3836",
-        "blink_fg": "#cc241d"
+        "blink_fg": "#cc241d",
+        "blink_reminder_fg": "#076678"
       },
       "kitty": {
         "font_family": "Mononoki Nerd Font",

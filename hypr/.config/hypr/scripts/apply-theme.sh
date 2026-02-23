@@ -181,6 +181,7 @@ sed -e "s|__font_family__|$waybar_font_name|g" \
   -e "s|__blink_fg__|$waybar_blink_fg|g" \
   -e "s|__disabled_bg__|$waybar_disabled_bg|g" \
   -e "s|__disabled_fg__|$waybar_disabled_fg|g" \
+  -e "s|__blink_reminder_fg__|$waybar_blink_reminder_fg|g" \
   "$WAYBAR_TEMPLATE" >"$WAYBAR_STYLE"
 
 # --- Kitty ---
