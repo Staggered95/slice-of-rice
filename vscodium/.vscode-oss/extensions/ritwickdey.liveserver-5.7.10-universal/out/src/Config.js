@@ -84,6 +84,12 @@ class Config {
     static setMultiRootWorkspaceName(val) {
         return Config.configuration.update('multiRootWorkspaceName', val, false);
     }
+    static get getHeaders() {
+        return Config.getSettings('headers');
+    }
+    static get getCors() {
+        return Config.getSettings('cors');
+    }
 }
 exports.Config = Config;
 //# sourceMappingURL=Config.js.map

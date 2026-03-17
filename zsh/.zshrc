@@ -19,6 +19,7 @@ setopt HIST_VERIFY              # Don’t execute immediately with ! commands
 
 # Path to your oh-my-zsh installation
 export ZSH="$HOME/.oh-my-zsh"
+export PATH="$HOME/.config/composer/vendor/bin:$PATH"
 
 # Theme
 #ZSH_THEME="powerlevel10k/powerlevel10k"   # or "robbyrussell", "clean", etc.

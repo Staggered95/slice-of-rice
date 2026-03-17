@@ -2,7 +2,7 @@
 	"name": "LiveServer",
 	"displayName": "Live Server",
 	"description": "Launch a development local Server with live reload feature for static & dynamic pages",
-	"version": "5.7.9",
+	"version": "5.7.10",
 	"publisher": "ritwickdey",
 	"author": {
 		"name": "Ritwick Dey",
@@ -163,7 +163,10 @@
 						".vscode/**",
 						"**/*.scss",
 						"**/*.sass",
-						"**/*.ts"
+						"**/*.ts",
+						"node_modules/**",
+						"venv/**",
+						".venv/**"
 					],
 					"description": "To ignore specific file changes"
 				},
@@ -295,6 +298,16 @@
 					"type": "string",
 					"default": null,
 					"description": "This the entry point of server when you're in multiroot workspace"
+				},
+				"liveServer.settings.headers": {
+					"type": "object",
+					"default": {},
+					"description": "Add additional headers"
+				},
+				"liveServer.settings.cors": {
+					"type": "boolean",
+					"default": false,
+					"description": "Enable or disable CORS support. Default is false. Note: If it is true, It will add 'Access-Control-Allow-Origin: *' header in response. Not a recommended way, please use liveServer.settings.headers for fine grained control over headers."
 				}
 			}
 		}
@@ -363,8 +376,8 @@
 		"message": "[NEW] LiveServer@5.7.9: Activation load time improved"
 	},
 	"__metadata": {
-		"installedTimestamp": 1766175107500,
+		"installedTimestamp": 1772443562909,
 		"targetPlatform": "universal",
-		"size": 15661980
+		"size": 15820059
 	}
 }

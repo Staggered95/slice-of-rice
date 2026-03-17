@@ -86,6 +86,8 @@ class Helper {
     static generateParams(rootPath, workspacePath, onTagMissedCallback) {
         workspacePath = workspacePath || '';
         const port = Config_1.Config.getPort;
+        const headers = Config_1.Config.getHeaders || {};
+        const corsEnabled = Config_1.Config.getCors || false;
         const ignorePathGlob = Config_1.Config.getIgnoreFiles || [];
         const ignoreFiles = [];
         ignorePathGlob.forEach(ignoredPath => {
@@ -116,12 +118,13 @@ class Helper {
             ignore: ignoreFiles,
             disableGlobbing: true,
             proxy: proxy,
-            cors: true,
+            cors: corsEnabled,
             wait: Config_1.Config.getWait || 100,
             fullReload: Config_1.Config.getfullReload,
             useBrowserExtension: Config_1.Config.getUseWebExt,
             onTagMissedCallback: onTagMissedCallback,
-            mount: mount
+            mount: mount,
+            headers: headers
         };
     }
     static getHttpsSetup() {
