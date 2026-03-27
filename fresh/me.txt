@@ -14,3 +14,4 @@ kotlin
 foliate
 gimp
 cmatrix
+figlet
