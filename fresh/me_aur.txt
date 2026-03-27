@@ -11,3 +11,4 @@ ascii-rain-git
 figlet
 lolcat
 tty-clock
+vivaldi

@@ -93,7 +93,7 @@ mkdir -p "$HOME/.config"
 STOW_FOLDERS=(
   "hypr" "kitty" "waybar" "wofi" "dunst" "cava"
   "nvim" "Thunar" "neofetch" "spicetify" "vivid" "xfce4"
-  "zsh" "vscodium" "Scripts" "systemd" "p10k"
+  "zsh" "vscodium" "systemd" "p10k"
 )
 
 cd "$SCRIPT_DIR" || error "Could not enter script directory"
@@ -103,7 +103,6 @@ for folder in "${STOW_FOLDERS[@]}"; do
     info "Stowing $folder..."
 
     TARGET_DIR="$HOME/.config/$folder"
-    if [ "$folder" == "Scripts" ]; then TARGET_DIR="$HOME/Scripts"; fi
     if [ "$folder" == "zsh" ] || [ "$folder" == "p10k" ]; then TARGET_DIR="$HOME"; fi
 
     if [ -d "$TARGET_DIR" ] && [ ! -L "$TARGET_DIR" ]; then

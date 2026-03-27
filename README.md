@@ -130,7 +130,7 @@ These dotfiles assume you are applying them to a functional, bootable Arch Linux
 1. **Clone the Repository:**
 
     ```bash
-    git clone [https://github.com/Staggered95/slice-of-rice.git](https://github.com/Staggered95/slice-of-rice.git)
+    git clone https://github.com/Staggered95/slice-of-rice.git ~/dotfiles
     cd ~/dotfiles
     ```
 

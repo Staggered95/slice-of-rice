@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# ========================================================================================
 # --- Colors & Variables ---
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
@@ -25,7 +26,6 @@ press_enter_to_continue() {
   read -r
 }
 
-# --- Safe Package Reader Function ---
 # Extracts valid package names, ignoring blank lines and # comments
 read_packages() {
   grep -vE '^\s*#|^\s*$' "$1" | tr '\n' ' '
@@ -61,8 +61,7 @@ fi
 
 # --- 3. INSTALL PACKAGES ---
 info "Installing core and base packages..."
-sudo pacman -Syu --needed --noconfirm base-devel git stow
-# Using xargs is safer than standard input (<) for pacman if there are weird line breaks
+sudo pacman -Syu --needed --noconfirm base-devel git stow rsync zsh
 read_packages "$SCRIPT_DIR/fresh/pkglist.txt" | xargs -r sudo pacman -S --needed --noconfirm
 
 if [ -f "$SCRIPT_DIR/fresh/me.txt" ]; then
@@ -101,13 +100,12 @@ fi
 
 # --- 5. STOW CONFIGURATION FILES ---
 info "Stowing configuration files..."
-
 mkdir -p "$HOME/.config"
 
 STOW_FOLDERS=(
   "hypr" "kitty" "waybar" "wofi" "dunst" "cava"
-  "nvim" "Thunar" "neofetch" "spicetify" "vivid" "xfce4"
-  "zsh" "vscodium" "Scripts" "anime-organizer" "systemd"
+  "nvim" "Thunar" "neofetch" "spicetify" "vivid" "xfce4" "zsh-me"
+  "zsh" "vscodium" "Scripts" "anime-organizer" "systemd" "p10k"
 )
 
 cd "$SCRIPT_DIR" || error "Could not enter script directory"
@@ -118,6 +116,7 @@ for folder in "${STOW_FOLDERS[@]}"; do
 
     TARGET_DIR="$HOME/.config/$folder"
     if [ "$folder" == "Scripts" ]; then TARGET_DIR="$HOME/Scripts"; fi
+    if [ "$folder" == "zsh" ] || [ "$folder" == "zsh-me" ] || [ "$folder" == "p10k" ]; then TARGET_DIR="$HOME"; fi
 
     if [ -d "$TARGET_DIR" ] && [ ! -L "$TARGET_DIR" ]; then
       warn "Existing config found for $folder. Backing up..."
@@ -144,15 +143,17 @@ fi
 
 # --- 7. ANIMIRU & SERVICES ---
 info "Enabling system services..."
-sudo systemctl enable --now sddm.service || warn "SDDM issue"
-sudo systemctl enable --now NetworkManager.service || warn "NetworkManager issue"
-sudo systemctl enable --now bluetooth.service || warn "Bluetooth issue"
+# Removed '--now' to prevent display manager from hijacking the screen
+sudo systemctl enable sddm.service || warn "SDDM issue"
+sudo systemctl enable NetworkManager.service || warn "NetworkManager issue"
+sudo systemctl enable bluetooth.service || warn "Bluetooth issue"
 
 info "Enabling user services (Animiru)..."
 systemctl --user daemon-reload
-systemctl --user enable --now anime_organizer.timer || warn "Could not enable Anime Timer"
-systemctl --user enable --now anime_organizer.service || warn "Could not enable Anime Service"
-success "User services enabled."
+# Removed '--now' to prevent D-Bus errors during root-heavy install
+systemctl --user enable anime_organizer.timer || warn "Could not enable Anime Timer"
+systemctl --user enable anime_organizer.service || warn "Could not enable Anime Service"
+success "Services enabled."
 
 # --- 8. GRUB THEME ---
 if [[ "$CONFIGURE_GRUB" =~ ^[Yy]$ ]]; then
@@ -164,15 +165,20 @@ if [[ "$CONFIGURE_GRUB" =~ ^[Yy]$ ]]; then
     THEME_PATH="/boot/grub/themes/lain/theme.txt"
     CONFIG_FILE="/etc/default/grub"
 
+    # 1. Disable text-only output
+    sudo sed -i 's/^\(GRUB_TERMINAL_OUTPUT="console"\)/#\1/' "$CONFIG_FILE"
+
+    # 2. Set Theme
     if grep -q "^GRUB_THEME=" "$CONFIG_FILE"; then
       sudo sed -i "s|^GRUB_THEME=.*|GRUB_THEME=\"$THEME_PATH\"|" "$CONFIG_FILE"
     elif grep -q "^#GRUB_THEME=" "$CONFIG_FILE"; then
       sudo sed -i "s|^#GRUB_THEME=.*|GRUB_THEME=\"$THEME_PATH\"|" "$CONFIG_FILE"
     else
-      echo "GRUB_THEME=\"$THEME_PATH\"" | sudo tee -a "$CONFIG_FILE"
+      echo "GRUB_THEME=\"$THEME_PATH\"" | sudo tee -a "$CONFIG_FILE" >/dev/null
     fi
 
     sudo grub-mkconfig -o /boot/grub/grub.cfg
+    success "GRUB theme configured."
   else
     warn "GRUB folder not found."
   fi
@@ -198,14 +204,11 @@ mkdir -p "$HOME/.themes" "$HOME/.local/share/icons" "$HOME/.local/share/fonts"
 [ -d "assets/fonts" ] && rsync -av "assets/fonts/" "$HOME/.local/share/fonts/"
 
 if [ "$SHELL" != "$(which zsh)" ]; then
-  chsh -s "$(which zsh)" || warn "Change shell manually."
+  info "Changing default shell to Zsh..."
+  sudo chsh -s "$(which zsh)" "$USER" || warn "Could not change shell. Please do it manually."
 fi
 
-THEME_SCRIPT="$HOME/.config/hypr/scripts/apply-theme.sh"
-if [ -f "$THEME_SCRIPT" ]; then
-  chmod +x "$THEME_SCRIPT"
-  "$THEME_SCRIPT" "everforest_dark"
-fi
+info "Initial theme will apply automatically on first login."
 
 fc-cache -fv &>/dev/null
 

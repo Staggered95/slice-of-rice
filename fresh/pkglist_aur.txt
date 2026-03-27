@@ -1,4 +1,4 @@
 mpvpaper
 spotify
 vscodium-bin
-
+neofetch
