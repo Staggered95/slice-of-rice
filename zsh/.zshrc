@@ -63,6 +63,7 @@ alias auto='sh ~/auto.sh'
 alias die='figlet "Just Die Already"'
 alias sync-anime='sh ~/Scripts/sync.sh'
 alias download-anime='sh ~/Scripts/download.sh'
+alias storage='sudo du -ah --max-depth=1 . | sort -rh'
 
 
 # Useful environment tweaks

@@ -29,16 +29,16 @@ if [ -f "$WALLPAPER_PATH" ]; then
 
   if [[ "mp4|mov|mkv" =~ $FILE_EXTENSION ]]; then
     # --- Restore a VIDEO wallpaper ---
-    swww kill
+    awww kill
     mpvpaper -p -o "--loop-file=inf --no-audio" "$MONITOR" "$WALLPAPER_PATH"
   else
     # --- Restore a STATIC or GIF wallpaper ---
     killall mpvpaper &>/dev/null
-    if ! pgrep -x swww-daemon >/dev/null; then
-      swww-daemon &>/dev/null &
+    if ! pgrep -x awww-daemon >/dev/null; then
+      awww-daemon &>/dev/null &
       sleep 0.5
     fi
-    swww img "$WALLPAPER_PATH" --transition-type grow
+    awww img "$WALLPAPER_PATH" --transition-type grow
   fi
 fi
 
