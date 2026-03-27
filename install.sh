@@ -25,6 +25,12 @@ press_enter_to_continue() {
   read -r
 }
 
+# --- Safe Package Reader Function ---
+# Extracts valid package names, ignoring blank lines and # comments
+read_packages() {
+  grep -vE '^\s*#|^\s*$' "$1" | tr '\n' ' '
+}
+
 # ========================================================================================
 #                                     MAIN SCRIPT
 # ========================================================================================
@@ -40,7 +46,6 @@ done &>/dev/null &
 echo -e "${BLUE}Welcome to Slice-of-Rice installation (Stow Edition)${NC}"
 press_enter_to_continue
 read -p "Do you want to configure GRUB theme? (y/n): " CONFIGURE_GRUB
-read -p "Do you want to install YT Music Vivaldi PWA? (y/n): " CONFIGURE_YTM
 
 # --- 2. VERIFY PACKAGE LISTS ---
 info "Verifying package lists..."
@@ -52,7 +57,7 @@ success "Package lists found."
 # --- 3. INSTALL PACKAGES ---
 info "Installing packages..."
 sudo pacman -Syu --needed --noconfirm base-devel git stow
-sudo pacman -Syu --needed --noconfirm - <"$SCRIPT_DIR/fresh/pkglist.txt"
+read_packages "$SCRIPT_DIR/fresh/pkglist.txt" | xargs -r sudo pacman -S --needed --noconfirm
 
 info "Checking for AUR helper..."
 if ! command -v yay &>/dev/null; then
@@ -63,15 +68,13 @@ if ! command -v yay &>/dev/null; then
 fi
 
 info "Installing AUR packages..."
-yay -S --needed --noconfirm - <"$SCRIPT_DIR/fresh/pkglist_aur.txt"
+read_packages "$SCRIPT_DIR/fresh/pkglist_aur.txt" | xargs -r yay -S --needed --noconfirm
 
 # --- 4. PREPARE & BACKUP VSCodium ---
-# We do this BEFORE stowing to prevent conflicts
 info "Checking VSCodium User config..."
 VSCODE_USER_DIR="$HOME/.config/VSCodium/User"
 mkdir -p "$VSCODE_USER_DIR"
 
-# If real files exist (not symlinks), back them up so Stow doesn't fail
 if [ -f "$VSCODE_USER_DIR/settings.json" ] && [ ! -L "$VSCODE_USER_DIR/settings.json" ]; then
   warn "Existing VSCodium settings found. Backing up..."
   mkdir -p "$BACKUP_DIR/VSCodium"
@@ -85,12 +88,10 @@ info "Stowing configuration files..."
 
 mkdir -p "$HOME/.config"
 
-# List of stow packages
-# NOTE: Ensure you have a 'Scripts' folder in your dotfiles repo for your ~/Scripts
 STOW_FOLDERS=(
   "hypr" "kitty" "waybar" "wofi" "dunst" "cava"
   "nvim" "Thunar" "neofetch" "spicetify" "vivid" "xfce4"
-  "zsh" "vscodium" "Scripts" "anime-organizer" "systemd"
+  "zsh" "vscodium" "Scripts" "systemd"
 )
 
 cd "$SCRIPT_DIR" || error "Could not enter script directory"
@@ -99,10 +100,7 @@ for folder in "${STOW_FOLDERS[@]}"; do
   if [ -d "$folder" ]; then
     info "Stowing $folder..."
 
-    # Conflict check: If a real config folder exists (not a symlink),
-    # stow will fail. We must back it up first.
     TARGET_DIR="$HOME/.config/$folder"
-    # Special case handling for folders that don't map to .config directly if needed
     if [ "$folder" == "Scripts" ]; then TARGET_DIR="$HOME/Scripts"; fi
 
     if [ -d "$TARGET_DIR" ] && [ ! -L "$TARGET_DIR" ]; then
@@ -111,7 +109,6 @@ for folder in "${STOW_FOLDERS[@]}"; do
       mv "$TARGET_DIR" "$BACKUP_DIR/${folder}_bak"
     fi
 
-    # -R (Restow) refreshes links
     stow -R -t "$HOME" "$folder"
   else
     warn "Folder '$folder' not found. Skipping."
@@ -129,18 +126,12 @@ else
   success "Zsh autosuggestions already exists."
 fi
 
-# --- 7. ANIMIRU & SERVICES ---
+# --- 7. SYSTEM SERVICES ---
 info "Enabling system services..."
 sudo systemctl enable --now sddm.service || warn "SDDM issue"
 sudo systemctl enable --now NetworkManager.service || warn "NetworkManager issue"
 sudo systemctl enable --now bluetooth.service || warn "Bluetooth issue"
-
-info "Enabling user services (Animiru)..."
-# Reload daemon to ensure it sees the new stowed unit files
-systemctl --user daemon-reload
-systemctl --user enable --now anime_organizer.timer || warn "Could not enable Anime Timer"
-systemctl --user enable --now anime_organizer.service || warn "Could not enable Anime Service"
-success "User services enabled."
+success "System services enabled."
 
 # --- 8. GRUB THEME ---
 if [[ "$CONFIGURE_GRUB" =~ ^[Yy]$ ]]; then
@@ -168,17 +159,6 @@ fi
 
 # --- 9. FINAL TOUCHES ---
 info "Applying final touches..."
-
-# YT Music Desktop File
-if [[ "$CONFIGURE_YTM" =~ ^[Yy]$ ]]; then
-  info "Installing YT Music Desktop file..."
-  mkdir -p ~/.local/share/applications/
-  if [ -f "others/youtube-music.desktop" ]; then
-    cp "others/youtube-music.desktop" ~/.local/share/applications/
-  else
-    warn "youtube-music.desktop not found in 'others' folder."
-  fi
-fi
 
 # Assets
 info "Copying assets..."

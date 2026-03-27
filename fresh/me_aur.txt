@@ -1,0 +1,13 @@
+mongodb-bin
+mongodb-tools-bin
+postman-bin
+android-tools
+android-sdk-build-tools
+ani-cli
+ungoogled-chromium-bin
+telegram-desktop
+cbonsai
+ascii-rain-git
+figlet
+lolcat
+tty-clock

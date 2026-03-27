@@ -6,7 +6,7 @@ hyprlock
 swww
 hyprpicker
 waybar
-nvim
+neovim
 wofi
 dunst
 hyprpolkitagent
@@ -53,3 +53,12 @@ firefox
 sddm
 grub
 efibootmgr
+xdg-desktop-portal
+xdg-desktop-portal-wlr
+ttf-ibm-plex
+ttf-ibmplex-mono-nerd
+ttf-fira-code
+ttf-dejavu
+evince
+wf-recorder
+tlp

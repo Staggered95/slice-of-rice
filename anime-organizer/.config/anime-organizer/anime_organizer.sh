@@ -13,90 +13,79 @@ log() {
 # --- Configuration ---
 CONFIG_FILE="$HOME/.config/anime-organizer/organizer.conf"
 
-# Load config file if it exists
 if [ -f "$CONFIG_FILE" ]; then
   source "$CONFIG_FILE"
 else
   log "Error: Config file not found at $CONFIG_FILE"
   exit 1
 fi
+
+SOURCE_DIRS=("$DOWNLOADS_DIR" "$LOCALANIME_DIR")
 # --- End of Configuration ---
 
 log "Starting anime library scan... (Symlink Mode for Arch Linux)"
 
-if [ ! -d "$DOWNLOADS_DIR" ]; then
-  log "Error: Download directory not found at $DOWNLOADS_DIR"
-  exit 1
-fi
-
 mkdir -p "$LIBRARY_DIR"
 
-# Clean-up
-log "Authoritative cleanup: removing anime not present in downloads..."
+# --- Clean-up Phase ---
+log "Authoritative cleanup: removing broken links and empty directories..."
+find "$LIBRARY_DIR" -type l -xtype l -delete
+find "$LIBRARY_DIR" -mindepth 1 -type d -empty -delete
+# --- End of Clean-up Phase ---
 
-# Collect anime names from provider/anime directories
-mapfile -t existing_anime < <(
-  find "$DOWNLOADS_DIR" -mindepth 3 -maxdepth 3 -type d | while IFS= read -r dir; do
-    base=$(basename "$dir")
-    # SAME normalization as creation
-    echo "$base" |
-      sed 's/\[[^]]*\]//g' |
-      sed 's/ *$//'
-  done | sort -u
-)
+# --- Symlink Generation Phase ---
+for SOURCE in "${SOURCE_DIRS[@]}"; do
 
-# Remove library entries not present in downloads
-find "$LIBRARY_DIR" -mindepth 1 -maxdepth 1 -type d | while IFS= read -r anime_dir; do
-  anime_name=$(basename "$anime_dir")
-
-  if ! printf '%s\n' "${existing_anime[@]}" | grep -qxF "$anime_name"; then
-    rm -r "$anime_dir"
-    log "Removed anime (no longer in downloads): $anime_name"
+  if [ ! -d "$SOURCE" ]; then
+    log "Warning: Source directory not found at $SOURCE. Skipping..."
+    continue
   fi
-done
 
-echo "ALL symlinks:"
-find "$LIBRARY_DIR" -type l -print
+  log "Scanning source: $SOURCE"
 
-echo
-echo "ONLY valid symlinks:"
-find "$LIBRARY_DIR" -xtype l -print
+  find "$SOURCE" -type f \( -name "*.mp4" -o -name "*.mkv" \) | while IFS= read -r video_path; do
 
-find "$DOWNLOADS_DIR" -type f \( -name "*.mp4" -o -name "*.mkv" \) | while IFS= read -r video_path; do
+    video_filename=$(basename "$video_path")
+    filename_no_ext="${video_filename%.*}"
 
-  video_filename=$(basename "$video_path")
-  filename_no_ext="${video_filename%.*}"
+    parent_dir_path=$(dirname "$video_path")
+    parent_dir_name=$(basename "$parent_dir_path")
 
-  episode_folder_path=$(dirname "$video_path")
-  episode_folder_name=$(basename "$episode_folder_path")
+    grandparent_dir_path=$(dirname "$parent_dir_path")
+    grandparent_dir_name=$(basename "$grandparent_dir_path")
 
-  # --- THIS IS THE MOVED BLOCK ---
-  # We define anime_folder_name and then immediately check if we should ignore it.
-  anime_folder_path=$(dirname "$episode_folder_path")
-  anime_folder_name=$(basename "$anime_folder_path")
+    # --- Structure Detection Logic ---
+    # Case 1: Downloads Structure (Anime Name / Episode 1 / Episode 1.mp4)
+    if [ "$filename_no_ext" == "$parent_dir_name" ]; then
+      anime_folder_name="$grandparent_dir_name"
 
-  IGNORE_FILE="$HOME/.config/anime-organizer/.ignore"
-  if [ -f "$IGNORE_FILE" ] && grep -qxF "$anime_folder_name" "$IGNORE_FILE"; then
-    continue # Skip to the next file
-  fi
-  # --- END OF MOVED BLOCK ---
+    # Case 2: Standard/Local Structure (Anime Name / 01.mp4)
+    else
+      anime_folder_name="$parent_dir_name"
+    fi
+    # --- End of Structure Detection ---
 
-  if [ "$filename_no_ext" == "$episode_folder_name" ]; then
+    # Ignore list check
+    IGNORE_FILE="$HOME/.config/anime-organizer/.ignore"
+    if [ -f "$IGNORE_FILE" ] && grep -qxF "$anime_folder_name" "$IGNORE_FILE"; then
+      continue
+    fi
 
-    episode_number=$(echo "$filename_no_ext" | sed 's/[^0-9]*//g')
+    # Extract episode number (grabs the last sequence of numbers)
+    episode_number=$(echo "$filename_no_ext" | grep -oE '[0-9]+' | tail -n 1)
 
+    # If no number is found in the filename, skip it
     if [ -z "$episode_number" ]; then
       continue
     fi
 
-    # We already have anime_folder_name, so no need to define it again.
+    # Clean up the anime title
     anime_title=$(echo "$anime_folder_name" | sed 's/\[[^]]*\]//g' | sed 's/ *$//')
 
     extension="${video_path##*.}"
     printf -v formatted_episode_number "%02d" "$episode_number"
-    #uncomment if you want anime title as well
-    #new_filename="$anime_title - S01E$formatted_episode_number.$extension"
-    new_filename="$formatted_episode_number.$extension"
+
+    new_filename="${formatted_episode_number}.${extension}"
 
     anime_library_path="$LIBRARY_DIR/$anime_title"
     mkdir -p "$anime_library_path"
@@ -105,9 +94,10 @@ find "$DOWNLOADS_DIR" -type f \( -name "*.mp4" -o -name "*.mkv" \) | while IFS= 
 
     if [ ! -e "$symlink_path" ]; then
       ln -s "$video_path" "$symlink_path"
-      log "Created link: $new_filename"
+      log "Created link: $anime_title - $new_filename"
     fi
-  fi
+
+  done
 done
 
 log "Scan complete! Check your library in '$LIBRARY_DIR'"

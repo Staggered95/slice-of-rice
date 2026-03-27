@@ -60,6 +60,9 @@ alias afc-backup='sh ~/vps_backups/pull_backup.sh'
 alias aria='sh ~/Scripts/project-aria.sh'
 alias runc='sh ~/Scripts/comprun.sh'
 alias auto='sh ~/auto.sh'
+alias die='figlet "Just Die Already"'
+alias sync-anime='sh ~/Scripts/sync.sh'
+alias download-anime='sh ~/Scripts/download.sh'
 
 
 # Useful environment tweaks

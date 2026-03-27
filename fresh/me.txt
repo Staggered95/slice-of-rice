@@ -1,0 +1,16 @@
+postgresql
+mariadb
+apache
+php
+php-fpm
+php-pgsql
+composer
+docker
+docker-compose
+jdk21-openjdk
+nodejs
+npm
+kotlin
+foliate
+gimp
+cmatrix
