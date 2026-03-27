@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# ========================================================================================
 # --- Colors & Variables ---
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
@@ -25,7 +26,6 @@ press_enter_to_continue() {
   read -r
 }
 
-# --- Safe Package Reader Function ---
 # Extracts valid package names, ignoring blank lines and # comments
 read_packages() {
   grep -vE '^\s*#|^\s*$' "$1" | tr '\n' ' '
@@ -35,6 +35,7 @@ read_packages() {
 #                                     MAIN SCRIPT
 # ========================================================================================
 
+# Keep sudo alive during the script
 sudo -v
 while true; do
   sudo -n true
@@ -55,8 +56,9 @@ fi
 success "Package lists found."
 
 # --- 3. INSTALL PACKAGES ---
-info "Installing packages..."
-sudo pacman -Syu --needed --noconfirm base-devel git stow
+info "Installing core packages..."
+# Explicitly ensuring rsync and zsh are installed early so later steps don't fail
+sudo pacman -Syu --needed --noconfirm base-devel git stow rsync zsh
 read_packages "$SCRIPT_DIR/fresh/pkglist.txt" | xargs -r sudo pacman -S --needed --noconfirm
 
 info "Checking for AUR helper..."
@@ -80,18 +82,18 @@ if [ -f "$VSCODE_USER_DIR/settings.json" ] && [ ! -L "$VSCODE_USER_DIR/settings.
   mkdir -p "$BACKUP_DIR/VSCodium"
   mv "$VSCODE_USER_DIR/settings.json" "$BACKUP_DIR/VSCodium/"
   mv "$VSCODE_USER_DIR/keybindings.json" "$BACKUP_DIR/VSCodium/" 2>/dev/null
-  success "VSCodium config backed up to $BACKUP_DIR"
+  success "VSCodium config backed up."
 fi
 
 # --- 5. STOW CONFIGURATION FILES ---
 info "Stowing configuration files..."
-
 mkdir -p "$HOME/.config"
 
+# Public STOW list (Removed anime-organizer, added p10k)
 STOW_FOLDERS=(
   "hypr" "kitty" "waybar" "wofi" "dunst" "cava"
   "nvim" "Thunar" "neofetch" "spicetify" "vivid" "xfce4"
-  "zsh" "vscodium" "Scripts" "systemd"
+  "zsh" "vscodium" "Scripts" "systemd" "p10k"
 )
 
 cd "$SCRIPT_DIR" || error "Could not enter script directory"
@@ -102,6 +104,7 @@ for folder in "${STOW_FOLDERS[@]}"; do
 
     TARGET_DIR="$HOME/.config/$folder"
     if [ "$folder" == "Scripts" ]; then TARGET_DIR="$HOME/Scripts"; fi
+    if [ "$folder" == "zsh" ] || [ "$folder" == "p10k" ]; then TARGET_DIR="$HOME"; fi
 
     if [ -d "$TARGET_DIR" ] && [ ! -L "$TARGET_DIR" ]; then
       warn "Existing config found for $folder. Backing up..."
@@ -128,9 +131,10 @@ fi
 
 # --- 7. SYSTEM SERVICES ---
 info "Enabling system services..."
-sudo systemctl enable --now sddm.service || warn "SDDM issue"
-sudo systemctl enable --now NetworkManager.service || warn "NetworkManager issue"
-sudo systemctl enable --now bluetooth.service || warn "Bluetooth issue"
+# Removed '--now' to prevent display manager from hijacking the screen mid-script
+sudo systemctl enable sddm.service || warn "SDDM issue"
+sudo systemctl enable NetworkManager.service || warn "NetworkManager issue"
+sudo systemctl enable bluetooth.service || warn "Bluetooth issue"
 success "System services enabled."
 
 # --- 8. GRUB THEME ---
@@ -143,17 +147,23 @@ if [[ "$CONFIGURE_GRUB" =~ ^[Yy]$ ]]; then
     THEME_PATH="/boot/grub/themes/lain/theme.txt"
     CONFIG_FILE="/etc/default/grub"
 
+    # 1. Disable text-only output by commenting out GRUB_TERMINAL_OUTPUT
+    sudo sed -i 's/^\(GRUB_TERMINAL_OUTPUT="console"\)/#\1/' "$CONFIG_FILE"
+
+    # 2. Add or update the GRUB_THEME line
     if grep -q "^GRUB_THEME=" "$CONFIG_FILE"; then
       sudo sed -i "s|^GRUB_THEME=.*|GRUB_THEME=\"$THEME_PATH\"|" "$CONFIG_FILE"
     elif grep -q "^#GRUB_THEME=" "$CONFIG_FILE"; then
       sudo sed -i "s|^#GRUB_THEME=.*|GRUB_THEME=\"$THEME_PATH\"|" "$CONFIG_FILE"
     else
-      echo "GRUB_THEME=\"$THEME_PATH\"" | sudo tee -a "$CONFIG_FILE"
+      echo "GRUB_THEME=\"$THEME_PATH\"" | sudo tee -a "$CONFIG_FILE" >/dev/null
     fi
 
+    # 3. Regenerate the config
     sudo grub-mkconfig -o /boot/grub/grub.cfg
+    success "GRUB theme configured."
   else
-    warn "GRUB folder not found."
+    warn "GRUB folder not found in dotfiles repository."
   fi
 fi
 
@@ -169,19 +179,14 @@ mkdir -p "$HOME/.themes" "$HOME/.local/share/icons" "$HOME/.local/share/fonts"
 
 # Change Shell
 if [ "$SHELL" != "$(which zsh)" ]; then
-  chsh -s "$(which zsh)" || warn "Change shell manually."
-fi
-
-# Apply Theme
-THEME_SCRIPT="$HOME/.config/hypr/scripts/apply-theme.sh"
-if [ -f "$THEME_SCRIPT" ]; then
-  chmod +x "$THEME_SCRIPT"
-  "$THEME_SCRIPT" "everforest_dark"
+  info "Changing default shell to Zsh..."
+  sudo chsh -s "$(which zsh)" "$USER" || warn "Could not change shell. Please do it manually."
 fi
 
 # Rebuild font cache
 fc-cache -fv &>/dev/null
 
 success "Slice-of-Rice installation complete!"
+info "Initial theme will apply automatically on first login."
 info "Backup of old configs stored in: $BACKUP_DIR"
 info "Please reboot your system."

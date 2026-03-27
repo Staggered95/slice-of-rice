@@ -25,7 +25,7 @@ export PATH="$HOME/.config/composer/vendor/bin:$PATH"
 #ZSH_THEME="powerlevel10k/powerlevel10k"   # or "robbyrussell", "clean", etc.
 
 # Plugins
-plugins=(git z sudo archlinux)
+#plugins=(git z sudo archlinux)
 
 # Source OMZ
 #source $ZSH/oh-my-zsh.sh
@@ -76,7 +76,7 @@ export KDE_FORCE_DISABLE_PLATFORM_THEME=1
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-export PATH=$PATH:/home/Shubham/.spicetify
+#export PATH=$PATH:$HOME/.spicetify
 
 
 # For hey, a linux support
