@@ -12,6 +12,6 @@ secrets.conf
 .zsh_history
 
 
-# Ignore theme state and cache files
+# Ignore theme state and cache files 
 hypr/.config/hypr/themes/wallpaper/
 hypr/.config/hypr/themes/lockpaper/
