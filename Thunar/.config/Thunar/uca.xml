@@ -40,7 +40,7 @@
 	<name>Set as Profile</name>
 	<submenu></submenu>
 	<unique-id>1753895765679148-3</unique-id>
-	<command>sh ~/.config/hypr/scripts/set-wallpaper.sh --pfp</command>
+	<command>sh ~/.config/hypr/scripts/set-wallpaper.sh %f --pfp</command>
 	<description></description>
 	<range>*</range>
 	<patterns>*.jpg;*.png;*.jpeg</patterns>
