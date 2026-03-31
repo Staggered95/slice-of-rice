@@ -118,6 +118,38 @@ GTK3_SETTINGS_FILE="$HOME/.config/gtk-3.0/settings.ini"
   echo "gtk-font-name=$font_name"
 } >"$GTK3_SETTINGS_FILE"
 
+# --- NEW: Explicitly set GTK4 theme for standard GTK4 apps ---
+mkdir -p "$HOME/.config/gtk-4.0"
+GTK4_SETTINGS_FILE="$HOME/.config/gtk-4.0/settings.ini"
+{
+  echo "[Settings]"
+  echo "gtk-theme-name=$gtk_theme"
+  echo "gtk-icon-theme-name=$icon_theme"
+  echo "gtk-cursor-theme-name=$cursor_theme"
+  echo "gtk-font-name=$font_name"
+} >"$GTK4_SETTINGS_FILE"
+
+# --- NEW: Force Libadwaita/GTK4 apps to use the theme via symlinks ---
+# Check both system-wide and local theme directories
+if [ -d "/usr/share/themes/$gtk_theme/gtk-4.0" ]; then
+  THEME_DIR="/usr/share/themes/$gtk_theme/gtk-4.0"
+elif [ -d "$HOME/.themes/$gtk_theme/gtk-4.0" ]; then
+  THEME_DIR="$HOME/.themes/$gtk_theme/gtk-4.0"
+elif [ -d "$HOME/.local/share/themes/$gtk_theme/gtk-4.0" ]; then
+  THEME_DIR="$HOME/.local/share/themes/$gtk_theme/gtk-4.0"
+else
+  THEME_DIR=""
+fi
+
+if [ -n "$THEME_DIR" ]; then
+  # Force overwrite existing symlinks in one step
+  ln -sfn "$THEME_DIR/assets" "$HOME/.config/gtk-4.0/assets"
+  ln -sfn "$THEME_DIR/gtk.css" "$HOME/.config/gtk-4.0/gtk.css"
+  ln -sfn "$THEME_DIR/gtk-dark.css" "$HOME/.config/gtk-4.0/gtk-dark.css"
+else
+  echo "Warning: No GTK4 folder found for theme '$gtk_theme'. Libadwaita apps may not be themed."
+fi
+
 # Hyprland
 hyprctl keyword general:col.active_border "$hyprland_active_border"
 hyprctl keyword general:col.inactive_border "$hyprland_inactive_border"
