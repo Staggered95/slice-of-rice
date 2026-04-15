@@ -4,16 +4,16 @@
 
 /* --- Color Variables --- */
 @define-color window_background transparent;
-@define-color window_border #A7C080;
-@define-color input_bg #384B55;
-@define-color input_fg #A7C080;
-@define-color input_border #A7C080;
-@define-color input_focus_border #A7C080;
-@define-color entry_main_fg #A7C080;
-@define-color entry_main_bg #D3C6AA;
-@define-color entry_selected_bg #A7C080;
-@define-color entry_selected_fg #414B50;
-@define-color entry_hover_bg #83C092;
+@define-color window_border #bd93f9;
+@define-color input_bg #44475a;
+@define-color input_fg #f8f8f2;
+@define-color input_border #bd93f9;
+@define-color input_focus_border #ff79c6;
+@define-color entry_main_fg #f8f8f2;
+@define-color entry_main_bg #282a36;
+@define-color entry_selected_bg #bd93f9;
+@define-color entry_selected_fg #282a36;
+@define-color entry_hover_bg #44475a;
 
 * {
     font-family: "JetBrains Mono Nerd Font";

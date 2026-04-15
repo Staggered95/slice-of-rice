@@ -1,1 +1,1 @@
-vim.g.everforest_background = 'hard' vim.cmd.colorscheme 'everforest'
+vim.g.everforest_background = 'dark' vim.cmd.colorscheme 'dracula'

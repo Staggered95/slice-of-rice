@@ -20,3 +20,5 @@ dev-reset() { ~/Scripts/dev --reset; }
 # For the otaku persona
 otaku() { ~/Scripts/otaku "$@"; }
 otaku-reset() { ~/Scripts/otaku --reset; }
+
+
