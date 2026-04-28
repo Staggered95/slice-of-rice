@@ -38,7 +38,7 @@ fi
 alias cls="clear"
 alias update="sudo pacman -Syu"
 alias battery="upower -i $(upower -e | grep 'BAT')"
-alias nighton='hyprctl hyprsunset temperature 3500'
+# alias nighton='hyprctl hyprsunset temperature 3500'
 alias nightoff='hyprctl hyprsunset identity'
 alias code='vscodium'
 alias ls='ls --color=auto'
@@ -60,3 +60,18 @@ if [[ "$TERM" == "xterm-kitty" ]]; then
         kotofetch
     fi
 fi
+
+
+nighton() {
+  local temp
+  case "$1" in
+    1) temp=4500 ;; 
+    2) temp=3500 ;; 
+    3) temp=2500 ;; 
+    4) temp=1500 ;; 
+    *) temp=${1:-3500} ;;
+  esac
+
+  hyprctl hyprsunset temperature "$temp"
+  echo "Night mode active: ${temp}K"
+}

@@ -54,7 +54,7 @@ ext install jdinhlife.gruvbox
 
 ### Screenshots
 
-![screenshots](https://github.com/jdinhify/vscode-theme-gruvbox/raw/HEAD/images/screenshots.jpg)
+![screenshots](https://raw.githubusercontent.com/jdinhify/vscode-theme-gruvbox/main/images/screenshots.jpg)
 
 ## Credits
 

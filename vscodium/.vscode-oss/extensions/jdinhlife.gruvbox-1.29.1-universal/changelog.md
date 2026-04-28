@@ -1,3 +1,13 @@
+## [1.29.1](https://github.com/jdinhify/vscode-theme-gruvbox/compare/v1.29.0...v1.29.1) (2026-04-15)
+
+
+### Bug Fixes
+
+* exclude screenshots.jpg from extension bundle ([#155](https://github.com/jdinhify/vscode-theme-gruvbox/issues/155)) ([ca3b8ad](https://github.com/jdinhify/vscode-theme-gruvbox/commit/ca3b8ad203e84a884ca33fb84b5795cf43032709)), closes [#154](https://github.com/jdinhify/vscode-theme-gruvbox/issues/154)
+
+
+
+
 # [1.29.0](https://github.com/jdinhify/vscode-theme-gruvbox/compare/v1.28.0...v1.29.0) (2025-08-21)
 
 
@@ -284,16 +294,6 @@
 ### Features
 
 * add menu separator to match with menu border ([#74](https://github.com/jdinhify/vscode-theme-gruvbox/issues/74)) ([6c56be6](https://github.com/jdinhify/vscode-theme-gruvbox/commit/6c56be645e294218ceb32a40972d6a51c782b2e5))
-
-
-
-
-## [1.9.2](https://github.com/jdinhify/vscode-theme-gruvbox/compare/v1.9.1...v1.9.2) (2023-10-25)
-
-
-### Bug Fixes
-
-* **readme:** update badges ([16b5772](https://github.com/jdinhify/vscode-theme-gruvbox/commit/16b57726a47b9d09156f906f77ddeff63d131f13))
 
 
 
