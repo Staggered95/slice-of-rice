@@ -224,7 +224,7 @@
     enable_recursive_icon_lookup = true
 
     # Set icon theme (only used for recursive icon lookup)
-    icon_theme = "Tela"
+    icon_theme = "Colloid-Catppuccin-Light"
     # You can also set multiple icon themes, with the leftmost one being used first.
     # icon_theme = "Adwaita, breeze"
 
@@ -343,29 +343,29 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#2f383e"
-    foreground = "#d3c6aa"
-    frame_color = "#4a555b"
-    highlight = "#2f383e, #d3c6aa"
+    background = "#eff1f5"
+    foreground = "#4c4f69"
+    frame_color = "#dce0e8"
+    highlight = "#eff1f5, #4c4f69"
     timeout = 4
     # Icon for notifications with low urgency
     default_icon = dialog-information
 
 [urgency_normal]
-    background = "#a7c080"
-    foreground = "#2f383e"
-    frame_color = "#d3c6aa"
-    highlight = "#a7c080, #2f383e"
+    background = "#ccd0da"
+    foreground = "#8839ef"
+    frame_color = "#4c4f69"
+    highlight = "#ccd0da, #8839ef"
     timeout = 8
     override_pause_level = 30
     # Icon for notifications with normal urgency
     default_icon = dialog-information
 
 [urgency_critical]
-    background = "#e67e80"
-    foreground = "#2f383e"
-    frame_color = "#d3c6aa"
-    highlight = "#e67e80, #2f383e"
+    background = "#e64553"
+    foreground = "#eff1f5"
+    frame_color = "#4c4f69"
+    highlight = "#e64553, #eff1f5"
     timeout = 0 # Sticky
     override_pause_level = 60
     # Icon for notifications with critical urgency
@@ -542,9 +542,9 @@
     progress_bar_max_width = 150
     
     # Everforest Colors
-    progress_bar_frame_color = "#d3c6aa"
-    progress_bar_background = "#4a555b"
-    progress_bar_foreground = "#a7c080"
+    progress_bar_frame_color = "#4c4f69"
+    progress_bar_background = "#dce0e8"
+    progress_bar_foreground = "#1e66f5"
 
     
 [kdeconnect_reveal_body]

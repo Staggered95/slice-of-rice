@@ -4,32 +4,32 @@
  */
 
 /* --- Color Variables --- */
-@define-color bar_bg rgba(31, 35, 40, 0.0);
-@define-color main_bg #3C4841;
-@define-color main_fg #A7C080;
-@define-color active_bg #A7C080;
-@define-color active_fg #384B55;
-@define-color hover_bg #83C092;
-@define-color hover_fg #2E383C;
-@define-color focus_bg #45443C;
-@define-color focus_fg #D3C6AA;
-@define-color battery_charging_bg #83C092;
-@define-color battery_charging_fg #232A2E;
-@define-color battery_warning_bg #DBBC7F;
-@define-color battery_warning_fg #232A2E;
-@define-color battery_critical_bg #E67E80;
-@define-color battery_critical_fg #232A2E;
-@define-color power_bg #E67E80;
-@define-color power_fg #293136;
-@define-color blink_bg #D3C6AA;
-@define-color blink_fg #E67E80;
-@define-color disabled_bg #495156;
-@define-color disabled_fg #9DA9A0;
-@define-color blink_reminder_fg #7FBBB3;
+@define-color bar_bg rgba(239, 241, 245, 0.0);
+@define-color main_bg #ccd0da;
+@define-color main_fg #4c4f69;
+@define-color active_bg #8839ef;
+@define-color active_fg #eff1f5;
+@define-color hover_bg #dce0e8;
+@define-color hover_fg #4c4f69;
+@define-color focus_bg #bcc0ca;
+@define-color focus_fg #4c4f69;
+@define-color battery_charging_bg #40a02b;
+@define-color battery_charging_fg #eff1f5;
+@define-color battery_warning_bg #df8e1d;
+@define-color battery_warning_fg #eff1f5;
+@define-color battery_critical_bg #d20f39;
+@define-color battery_critical_fg #eff1f5;
+@define-color power_bg #dd7878;
+@define-color power_fg #eff1f5;
+@define-color blink_bg #4c4f69;
+@define-color blink_fg #d20f39;
+@define-color disabled_bg #bcc0ca;
+@define-color disabled_fg #6c6f85;
+@define-color blink_reminder_fg #1e66f5;
 
 
 * {
-    font-family: "BlexMono Nerd Font", "JetBrains Mono Nerd Font", sans-serif;
+    font-family: "JetBrainsMono Nerd Font", "JetBrains Mono Nerd Font", sans-serif;
     font-size: 14px;
     border: none;
     border-radius: 0;
