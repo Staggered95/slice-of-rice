@@ -351,7 +351,9 @@ sed -e "s/__gradient_1__/$cava_gradient_1/g" \
   "$CAVA_TEMPLATE" >"$CAVA_CONFIG"
 
 # --- Reloads ---
-killall -SIGUSR2 waybar
+# killall -SIGUSR2 waybar
+killall waybar
+waybar &>/dev/null &
 killall dunst && dunst &
 source ~/.cache/ls_colors
 /usr/bin/kill -SIGUSR1 $(pidof kitty)

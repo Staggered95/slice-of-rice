@@ -43,11 +43,11 @@ else
   # If multiple exist (e.g., "everforest_dark", "everforest_light"), extract the variants and prompt
   VARIANTS=$(echo "$AVAILABLE_KEYS" | sed "s/^${FAMILY_LOWER}_//I" | awk '{print toupper(substr($0,1,1)) tolower(substr($0,2))}')
   SELECTED_VARIANT=$(echo -e "$VARIANTS" | wofi -dmenu -p "Select Variant")
-  
+
   if [ -z "$SELECTED_VARIANT" ]; then
     exit 0
   fi
-  
+
   VARIANT_LOWER=$(echo "$SELECTED_VARIANT" | tr '[:upper:]' '[:lower:]')
   CURRENT_THEME="${FAMILY_LOWER}_${VARIANT_LOWER}"
 fi
@@ -55,12 +55,20 @@ fi
 # --- 3. Execution ---
 # Check if the finalized theme key exists in the JSON database
 if jq -e ".[\"$CURRENT_THEME\"]" "$THEMES_DB" >/dev/null; then
-  # Apply the theme using the engine script
-  sh "$THEME_ENGINE_SCRIPT" "$CURRENT_THEME"
+
+  # --- THEME ROUTER ---
+  if [ "$CURRENT_THEME" == "ayaka" ]; then
+    # Route to the dedicated Ayaka script
+    sh "$HOME/.config/hypr/scripts/apply-ayaka.sh" "$CURRENT_THEME"
+  else
+    # Apply standard themes using the main engine script
+    sh "$THEME_ENGINE_SCRIPT" "$CURRENT_THEME"
+  fi
 
   # Update the pointer file for the next login (ensure directory exists first)
   mkdir -p "$(dirname "$STATE_FILE")"
-  echo "$CURRENT_THEME" > "$STATE_FILE"
+  echo "$CURRENT_THEME" >"$STATE_FILE"
 else
   notify-send "Theme Error" "Theme '$CURRENT_THEME' not found in database." -u critical
 fi
+

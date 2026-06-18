@@ -47,7 +47,7 @@
         "blink_reminder_fg": "#7FBBB3"
       },
       "kitty": {
-        "font_family": "IBM Plex Mono",
+        "font_family": "BlexMono Nerd Font",
         "font_size": "12",
         "background_opacity": "0.85",
         "window_padding_width": "24",
@@ -175,7 +175,7 @@
         "blink_reminder_fg": "#3A94C5"
       },
       "kitty": {
-        "font_family": "IBM Plex Mono",
+        "font_family": "BlexMono Nerd Font",
         "font_size": "12",
         "background_opacity": "0.85",
         "window_padding_width": "24",
@@ -808,7 +808,7 @@
         "blink_reminder_fg": "#8be9fd"
       },
       "kitty": {
-        "font_family": "IBM Plex Mono",
+        "font_family": "BlexMono Nerd Font",
         "font_size": "12",
         "background_opacity": "0.85",
         "window_padding_width": "24",
@@ -936,7 +936,7 @@
         "blink_reminder_fg": "#8fbcbb"
       },
       "kitty": {
-        "font_family": "IBM Plex Mono",
+        "font_family": "BlexMono Nerd Font",
         "font_size": "12",
         "background_opacity": "0.85",
         "window_padding_width": "24",
@@ -1064,7 +1064,7 @@
         "blink_reminder_fg": "#5e81ac"
       },
       "kitty": {
-        "font_family": "IBM Plex Mono",
+        "font_family": "BlexMono Nerd Font",
         "font_size": "12",
         "background_opacity": "0.85",
         "window_padding_width": "24",

@@ -9,7 +9,7 @@
   <property name="last-restore-tabs" type="bool" value="true"/>
   <property name="misc-exec-shell-scripts-by-default" type="string" value="THUNAR_EXECUTE_SHELL_SCRIPT_ASK"/>
   <property name="last-tabs-left" type="array">
-    <value type="string" value="file:///mnt/REM"/>
+    <value type="string" value="file:///home/Shubham/projects/work/Cognizant-JavaFSE-Solutions"/>
   </property>
   <property name="last-focused-tab-left" type="int" value="0"/>
   <property name="last-focused-tab-right" type="int" value="0"/>
@@ -23,7 +23,7 @@
   <property name="last-sort-column" type="string" value="THUNAR_COLUMN_NAME"/>
   <property name="last-sort-order" type="string" value="GTK_SORT_ASCENDING"/>
   <property name="last-details-view-zoom-level" type="string" value="THUNAR_ZOOM_LEVEL_38_PERCENT"/>
-  <property name="last-details-view-column-widths" type="string" value="50,50,146,129,50,110,50,50,1239,50,50,81,50,168"/>
+  <property name="last-details-view-column-widths" type="string" value="50,50,146,129,50,339,50,50,929,50,50,90,50,240"/>
   <property name="last-side-pane" type="string" value="THUNAR_SIDEPANE_TYPE_SHORTCUTS"/>
   <property name="misc-confirm-close-multiple-tabs" type="bool" value="false"/>
 </channel>

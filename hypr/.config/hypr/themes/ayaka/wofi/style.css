@@ -1,0 +1,61 @@
+/* --- Kamisato Ayaka "Grus Nivis" - Main Wofi Menu --- */
+
+@define-color window_background rgba(26, 29, 36, 0.85);
+@define-color window_border #89B4FA;
+@define-color input_bg #313244;
+@define-color input_fg #E5E9F0;
+@define-color input_border #89B4FA;
+@define-color input_focus_border #F5C2E7;
+@define-color entry_main_fg #89B4FA;
+@define-color entry_main_bg transparent;
+@define-color entry_selected_bg #89B4FA;
+@define-color entry_selected_fg #1A1D24;
+@define-color entry_hover_bg #F5C2E7;
+
+* { font-family: "JetBrains Mono Nerd Font"; }
+
+window {
+    background: @window_background;
+    border-radius: 7px;
+    border: 2px solid @window_border;
+}
+
+#input {
+    margin: 15px;
+    padding: 8px 12px;
+    background-color: @input_bg;
+    color: @input_fg;
+    border: 1px solid @input_border;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+#input:focus {
+    border: 2px solid @input_focus_border;
+    outline: none;
+    box-shadow: none;
+}
+
+#inner-box {
+    padding: 0 15px 15px 15px;
+    border-radius: 15px;
+}
+
+#entry {
+    padding: 10px;
+    border-radius: 10px;
+    color: @entry_main_fg;
+    transition: background-color 0.2s ease-in-out;
+}
+
+#entry:selected {
+    background-color: @entry_selected_bg;
+    color: @entry_selected_fg;
+}
+
+#entry:hover {
+    background-color: @entry_hover_bg;
+}
+
+#img { margin-right: 10px; }
+#text { color: inherit; }
