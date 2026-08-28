@@ -1,6 +1,6 @@
 {
 	"name": "vscode-tailwindcss",
-	"version": "0.14.28",
+	"version": "0.16.0",
 	"displayName": "Tailwind CSS IntelliSense",
 	"description": "Intelligent Tailwind CSS tooling for VS Code",
 	"author": "Brad Cornes <hello@bradley.dev>",
@@ -272,6 +272,17 @@
 					"markdownDescription": "Unknown variant name used with the [`@variants` directive](https://tailwindcss.com/docs/functions-and-directives/#variants)",
 					"scope": "language-overridable"
 				},
+				"tailwindCSS.lint.deprecatedAtRule": {
+					"type": "string",
+					"enum": [
+						"ignore",
+						"warning",
+						"error"
+					],
+					"default": "warning",
+					"markdownDescription": "Deprecated Tailwind CSS at-rules",
+					"scope": "language-overridable"
+				},
 				"tailwindCSS.lint.invalidConfigPath": {
 					"type": "string",
 					"enum": [
@@ -373,7 +384,7 @@
 		}
 	},
 	"scripts": {
-		"_esbuild": "node ../../esbuild.mjs src/extension.ts src/server.ts src/cssServer.ts --outdir=dist",
+		"_esbuild": "node ../../esbuild.mjs src/extension.ts src/server.ts src/cssServer.ts src/oxide-helper.ts --outdir=dist",
 		"dev": "concurrently --raw --kill-others \"pnpm run watch\" \"pnpm run check --watch\"",
 		"watch": "pnpm run clean && pnpm run _esbuild --watch",
 		"build": "pnpm run check && pnpm run clean && pnpm run _esbuild --minify && move-file dist/server.js dist/tailwindServer.js && move-file dist/cssServer.js dist/tailwindModeServer.js",
@@ -394,7 +405,7 @@
 		"braces": "3.0.3",
 		"color-name": "1.1.4",
 		"concurrently": "9.1.2",
-		"esbuild": "^0.25.5",
+		"esbuild": "^0.28.1",
 		"minimist": "^1.2.8",
 		"move-file-cli": "3.0.0",
 		"normalize-path": "3.0.0",
@@ -404,8 +415,8 @@
 		"vscode-languageclient": "8.0.2"
 	},
 	"__metadata": {
-		"installedTimestamp": 1760379514360,
+		"installedTimestamp": 1784696515529,
 		"targetPlatform": "universal",
-		"size": 6935242
+		"size": 7107689
 	}
 }

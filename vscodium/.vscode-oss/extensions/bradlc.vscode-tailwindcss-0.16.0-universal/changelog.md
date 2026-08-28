@@ -4,6 +4,23 @@
 
 - Nothing yet!
 
+## 0.16.0
+
+- Add a source to all emitted diagnostics ([#1491](https://github.com/tailwindlabs/tailwindcss-intellisense/pull/1491))
+- Improve performance in large files ([#1507](https://github.com/tailwindlabs/tailwindcss-intellisense/pull/1507))
+- Improve utility lookup performance when using v4 ([#1509](https://github.com/tailwindlabs/tailwindcss-intellisense/pull/1509), [#1512](https://github.com/tailwindlabs/tailwindcss-intellisense/pull/1512))
+- Fix project initalization when stylesheet is named `tailwindcss.css` ([#1517](https://github.com/tailwindlabs/tailwindcss-intellisense/pull/1517))
+- Mark `@variant` as deprecated when defining custom variants ([#1578](https://github.com/tailwindlabs/tailwindcss-intellisense/pull/1578))
+- Show pixel equivalents for `@container` ([#1585](https://github.com/tailwindlabs/tailwindcss-intellisense/pull/1585))
+- Fix class hover in Vue `<script></script>` tags when they exist after `<template></template>` tags ([#1580](https://github.com/tailwindlabs/tailwindcss-intellisense/pull/1580))
+- Fix incorrect `cssConflict` warnings when using Tailwind CSS v4.3.3+ ([#1601](https://github.com/tailwindlabs/tailwindcss-intellisense/pull/1601))
+
+## 0.14.29
+
+- Offload content detection to separate process ([#1471](https://github.com/tailwindlabs/tailwindcss-intellisense/pull/1471))
+- Suggest canonical classes when pixels and rem values match based on the root font size ([#1476](https://github.com/tailwindlabs/tailwindcss-intellisense/pull/1476))
+- Fix completion edit range being incorrect when part before cursor ends with `-[` ([#1480](https://github.com/tailwindlabs/tailwindcss-intellisense/pull/1480))
+
 ## 0.14.28
 
 - Fix infinite recursion in theme variable lookups ([#1473](https://github.com/tailwindlabs/tailwindcss-intellisense/pull/1473))
@@ -148,7 +165,7 @@
 - LSP: Declare capability for handling workspace folder change notifications ([#1223](https://github.com/tailwindlabs/tailwindcss-intellisense/pull/1223))
 - Don't throw when resolving paths containing a `#` character ([#1225](https://github.com/tailwindlabs/tailwindcss-intellisense/pull/1225))
 - Show `@theme` in symbol list in CSS language mode ([#1227](https://github.com/tailwindlabs/tailwindcss-intellisense/pull/1227))
-- Don't show syntax error when `*` appear inside `—value(…)` and `--modifier(…)`  ([#1226](https://github.com/tailwindlabs/tailwindcss-intellisense/pull/1226))
+- Don't show syntax error when `*` appear inside `—value(…)` and `--modifier(…)` ([#1226](https://github.com/tailwindlabs/tailwindcss-intellisense/pull/1226))
 - Don't show syntax error for theme namespaces inside `@theme` ([#1226](https://github.com/tailwindlabs/tailwindcss-intellisense/pull/1226))
 
 ## 0.14.6
@@ -172,7 +189,7 @@
 - Add support for `static` theme option ([#1176](https://github.com/tailwindlabs/tailwindcss-intellisense/pull/1176))
 - Add details about theme options when hovering ([#1176](https://github.com/tailwindlabs/tailwindcss-intellisense/pull/1176))
 - Fix parsing of `@custom-variant` shorthand in Tailwind CSS language mode ([#1183](https://github.com/tailwindlabs/tailwindcss-intellisense/pull/1183))
-- Make sure custom regexes apply in Vue `<script>` blocks  ([#1177](https://github.com/tailwindlabs/tailwindcss-intellisense/pull/1177))
+- Make sure custom regexes apply in Vue `<script>` blocks ([#1177](https://github.com/tailwindlabs/tailwindcss-intellisense/pull/1177))
 - Fix suggestion of utilities with slashes in them in v4 ([#1182](https://github.com/tailwindlabs/tailwindcss-intellisense/pull/1182))
 - Assume 16px font size for `1rem` in media queries ([#1190](https://github.com/tailwindlabs/tailwindcss-intellisense/pull/1190))
 - Show warning when loading a config in v3 fails ([#1191](https://github.com/tailwindlabs/tailwindcss-intellisense/pull/1191))

@@ -92,6 +92,7 @@ gsettings set org.gnome.desktop.interface gtk-theme "$gtk_theme"
 gsettings set org.gnome.desktop.interface icon-theme "$icon_theme"
 gsettings set org.gnome.desktop.interface cursor-theme "$cursor_theme"
 gsettings set org.gnome.desktop.interface font-name "$font_name"
+gsettings set org.gnome.desktop.interface color-scheme "$color_scheme"
 
 # TEMP_FONT=$(echo "$font_name" | sed 's/ [0-9]\+$//')
 # FONT_FAMILY=$(echo "$TEMP_FONT" | sed -E 's/ (Regular|Medium|Bold|Italic|Light|Book|SemiBold|ExtraBold|Heavy|Black|Thin|Condensed|Oblique)//g' | xargs)
@@ -163,14 +164,17 @@ export LS_COLORS="$(vivid generate "$vivid_theme")"
 
 # --- Neovim ---
 NVIM_THEME_FILE="$HOME/.config/nvim/lua/custom/theme.lua"
-# Create the Lua command string
-LUA_CMD="vim.cmd.colorscheme '$nvim_theme'"
-# If a specific background is set in the JSON, add it to the command
+
+# Clear the file first
+>"$NVIM_THEME_FILE"
+
+# If a specific background is set in the JSON, use Neovim's native option
 if [ -n "$nvim_background" ]; then
-  LUA_CMD="vim.g.everforest_background = '$nvim_background' $LUA_CMD"
+  echo "vim.o.background = '$nvim_background'" >>"$NVIM_THEME_FILE"
 fi
-# Write the final command to the theme file
-echo "$LUA_CMD" >"$NVIM_THEME_FILE"
+
+# Write the colorscheme command on the next line
+echo "vim.cmd.colorscheme('$nvim_theme')" >>"$NVIM_THEME_FILE"
 
 # --- Restore last used lock screen wallpaper ---
 if [ -f "$LOCKPAPER_STATE_FILE" ]; then
@@ -349,6 +353,14 @@ sed -e "s/__gradient_1__/$cava_gradient_1/g" \
   -e "s/__foreground__/$cava_foreground/g" \
   -e "s/__background__/$cava_background/g" \
   "$CAVA_TEMPLATE" >"$CAVA_CONFIG"
+
+# --- Others ---
+# --- Firefox userContent Wallpaper Sync ---
+FIREFOX_PROFILE=$(ls -d ~/.mozilla/firefox/*.default 2>/dev/null | head -n 1)
+
+if [ -d "$FIREFOX_PROFILE/chrome" ] && [ -f "$WALLPAPER_PATH" ]; then
+  ln -sfn "$WALLPAPER_PATH" "$FIREFOX_PROFILE/chrome/current_wallpaper.png"
+fi
 
 # --- Reloads ---
 # killall -SIGUSR2 waybar

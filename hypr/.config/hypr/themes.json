@@ -5,6 +5,7 @@
       "name": "Everforest Dark",
       "gtk_theme": "Everforest-Green-Dark",
       "icon_theme": "Colloid-Green-Dark",
+      "color_scheme": "prefer-dark",
       "default_wallpaper": "/dotfiles/assets/walls/ev_d.jpg",
       "default_lockpaper": "/dotfiles/assets/walls/ev_d_lock.jpg",
       "cursor_theme": "Bibata-Original-Ice",
@@ -13,7 +14,7 @@
       "vs_codium_theme": "Everforest Dark",
       "vivid_theme": "snazzy",
       "nvim_theme": "everforest",
-      "nvim_background": "hard"
+      "nvim_background": "dark"
     },
     "colors": {
       "hyprland": {
@@ -133,6 +134,7 @@
       "name": "Everforest Light",
       "gtk_theme": "Everforest-Green-Light",
       "icon_theme": "Colloid-Green-Light",
+      "color_scheme": "prefer-light",
       "default_wallpaper": "/dotfiles/assets/walls/ev_l.jpg",
       "default_lockpaper": "/dotfiles/assets/walls/ev_l_lock.jpg",
       "cursor_theme": "Bibata-Modern-Classic",
@@ -260,6 +262,7 @@
     "metadata": {
       "gtk_theme": "catppuccin-mocha-mauve-standard+default",
       "icon_theme": "Colloid-Catppuccin-Dark",
+      "color_scheme": "prefer-dark",
       "default_wallpaper": "/dotfiles/assets/walls/mocha_d.jpg",
       "default_lockpaper": "/dotfiles/assets/walls/mocha_d_lock.png",
       "cursor_theme": "Bibata-Modern-Classic",
@@ -386,6 +389,7 @@
     "metadata": {
       "gtk_theme": "catppuccin-latte-mauve-standard+default",
       "icon_theme": "Colloid-Catppuccin-Light",
+      "color_scheme": "prefer-light",
       "default_wallpaper": "/dotfiles/assets/walls/latte_l.png",
       "default_lockpaper": "/dotfiles/assets/walls/latte_l_lock.jpg",
       "cursor_theme": "Bibata-Original-Ice",
@@ -394,7 +398,7 @@
       "vs_codium_theme": "Catppuccin Latte",
       "vivid_theme": "catppuccin-latte",
       "nvim_theme": "catppuccin",
-      "nvim_background": "latte"
+      "nvim_background": "light"
     },
     "colors": {
       "hyprland": {
@@ -513,6 +517,7 @@
     "metadata": {
       "gtk_theme": "Gruvbox-Material-Dark",
       "icon_theme": "Gruvbox-Plus-Dark",
+      "color_scheme": "prefer-dark",
       "default_wallpaper": "/dotfiles/assets/walls/gr_d.png",
       "default_lockpaper": "/dotfiles/assets/walls/gr_d_lock.png",
       "cursor_theme": "Bibata-Original-Ice",
@@ -639,6 +644,7 @@
     "metadata": {
       "gtk_theme": "Gruvbox-Light-Medium",
       "icon_theme": "Gruvbox-Plus-Light",
+      "color_scheme": "prefer-light",
       "default_wallpaper": "/dotfiles/assets/walls/gr_l.jpg",
       "default_lockpaper": "/dotfiles/assets/walls/gr_l_lock.png",
       "cursor_theme": "Bibata-Modern-Classic",
@@ -766,6 +772,7 @@
       "name": "Dracula Dark",
       "gtk_theme": "Dracula",
       "icon_theme": "Colloid-Dracula-Dark",
+      "color_scheme": "prefer-dark",
       "default_wallpaper": "/dotfiles/assets/walls/dracula_d.jpg",
       "default_lockpaper": "/dotfiles/assets/walls/dracula_d_lock.jpg",
       "cursor_theme": "Bibata-Modern-Classic",
@@ -894,6 +901,7 @@
       "name": "Nord Dark",
       "gtk_theme": "Nordic",
       "icon_theme": "Colloid-Nord-Dark",
+      "color_scheme": "prefer-dark",
       "default_wallpaper": "/dotfiles/assets/walls/nord_d.jpg",
       "default_lockpaper": "/dotfiles/assets/walls/nord_d_lock.jpg",
       "cursor_theme": "Nordzy-cursors",
@@ -1022,6 +1030,7 @@
       "name": "Nord Light",
       "gtk_theme": "Nordic-Polar",
       "icon_theme": "Colloid-Nord-Light",
+      "color_scheme": "prefer-light",
       "default_wallpaper": "/dotfiles/assets/walls/nord_l.jpg",
       "default_lockpaper": "/dotfiles/assets/walls/nord_l_lock.jpg",
       "cursor_theme": "Nordzy-cursors",
@@ -1147,3 +1156,4 @@
 
 
 }
+

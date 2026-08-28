@@ -2,6 +2,29 @@
 
 A light theme for Visual Studio Code and compatible editors (Cursor, VSCodium, etc.) based on the [Nord](https://www.nordtheme.com/) color palette, adapted for light backgrounds.
 
+## Installation
+
+Available on:
+
+- [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=IllegalStudio.nord-light-theme)
+- [Open VSX Registry](https://open-vsx.org/extension/IllegalStudio/nord-light-theme)
+
+Search for "Nord Light Theme" in the Extensions panel or install via command line:
+
+```bash
+# Visual Studio Code
+code --install-extension IllegalStudio.nord-light-theme
+
+# VSCodium
+codium --install-extension IllegalStudio.nord-light-theme
+```
+
+### Activate the theme
+
+1. Open Command Palette (`Cmd+Shift+P` / `Ctrl+Shift+P`)
+2. Run "Preferences: Color Theme"
+3. Select "Nord Light"
+
 ## Project Structure
 
 ```
@@ -39,35 +62,6 @@ For more info: https://github.com/microsoft/vscode-vsce
 
 This generates `outputs/nord-light-theme-<version>.vsix`.
 
-## Installation
-
-### From VSIX file
-
-1. Open Visual Studio Code / Cursor
-2. Open Command Palette (`Cmd+Shift+P` / `Ctrl+Shift+P`)
-3. Run "Extensions: Install from VSIX..."
-4. Select the `.vsix` file from the `outputs/` folder
-5. Reload the editor
-
-### From source (development)
-
-```bash
-# Create a symlink in the extensions folder
-# For Visual Studio Code:
-ln -s /path/to/nord-light-vscode ~/.vscode/extensions/nord-light-theme
-
-# For Cursor:
-ln -s /path/to/nord-light-vscode ~/.cursor/extensions/nord-light-theme
-```
-
-Then reload the editor.
-
-### Activate the theme
-
-1. Open Command Palette (`Cmd+Shift+P` / `Ctrl+Shift+P`)
-2. Run "Preferences: Color Theme"
-3. Select "Nord Light"
-
 ## Color Palette
 
 ### Base Colors (Nord Snow Storm)
@@ -95,21 +89,21 @@ The original Nord accent colors are designed for dark backgrounds. For the light
 
 | Element | Original Nord | Nord Light | Description |
 |---------|---------------|------------|-------------|
-| Classes/Types | `#8FBCBB` (nord7) | `#1D7A79` | Teal - class names, type references |
-| Functions | `#88C0D0` (nord8) | `#0D7D8C` | Cyan - function declarations and calls |
+| Classes/Types | `#8FBCBB` (nord7) | `#1C7473` | Teal - class names, type references |
+| Functions | `#88C0D0` (nord8) | `#0C7482` | Cyan - function declarations and calls |
 | Tags | `#81A1C1` (nord9) | `#4B6C8C` | Light blue - HTML/XML tags, operators |
 | Keywords | `#5E81AC` (nord10) | `#3B5E85` | Blue - language keywords |
-| Strings | `#A3BE8C` (nord14) | `#6B8B4F` | Green - string literals |
-| Numbers | `#B48EAD` (nord15) | `#8B5E84` | Purple - numeric literals |
-| Constants | `#EBCB8B` (nord13) | `#B8941E` | Yellow - constants, enums |
-| Fields | `#D08770` (nord12) | `#A5614A` | Orange - instance/static fields |
-| Errors | `#BF616A` (nord11) | `#BF616A` | Red - errors (unchanged) |
+| Strings | `#A3BE8C` (nord14) | `#577140` | Green - string literals |
+| Numbers | `#B48EAD` (nord15) | `#865B7F` | Purple - numeric literals |
+| Constants | `#EBCB8B` (nord13) | `#7F6614` | Yellow - constants, enums |
+| Fields | `#D08770` (nord12) | `#975943` | Orange - instance/static fields |
+| Errors | `#BF616A` (nord11) | `#AE4750` | Red - errors (darkened for contrast) |
 
 ### Color Rationale
 
 - **Darkening factor:** ~25-40% darker than original Nord colors
 - **Saturation:** Maintained or slightly increased for vibrancy
-- **Contrast ratio:** All colors meet WCAG AA standards against `#ECEFF4` background
+- **Contrast ratio:** Verified by calculation (WCAG relative luminance). Text colors (`#2E3440`/`#3B4252`/`#4C566A`) exceed 6:1 against every background. Accent colors and the muted gray meet >=4.5:1 (WCAG AA) against both the `#E5E9F0` and `#ECEFF4` backgrounds.
 
 ## Supported Languages
 

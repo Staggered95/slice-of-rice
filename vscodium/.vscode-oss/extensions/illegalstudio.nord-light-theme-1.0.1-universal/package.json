@@ -2,7 +2,7 @@
 	"name": "nord-light-theme",
 	"displayName": "Nord Light Theme",
 	"description": "A light theme based on the Nord color palette",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"publisher": "IllegalStudio",
 	"license": "MIT",
 	"engines": {
@@ -31,8 +31,8 @@
 		"url": "https://github.com/nord-light/vscode"
 	},
 	"__metadata": {
-		"installedTimestamp": 1773732480331,
+		"installedTimestamp": 1785303699706,
 		"targetPlatform": "universal",
-		"size": 41091
+		"size": 41219
 	}
 }
