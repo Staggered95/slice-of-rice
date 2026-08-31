@@ -152,8 +152,7 @@ else
 fi
 
 # Hyprland
-hyprctl keyword general:col.active_border "$hyprland_active_border"
-hyprctl keyword general:col.inactive_border "$hyprland_inactive_border"
+hyprctl eval "hl.config({ general = { col = { active_border = $hyprland_active_border, inactive_border = '${hyprland_inactive_border}' } } })"
 hyprctl setcursor "$cursor_theme" "$cursor_size"
 
 SETTINGS="$HOME/.config/VSCodium/User/settings.json"

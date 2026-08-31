@@ -55,7 +55,7 @@ activate_save_mode() {
 
   hyprctl keyword animations:enabled 0
   hyprctl keyword decoration:blur:enabled 0
-  hyprctl --batch "keyword decoration:active_opacity 1.0 ; keyword decoration:inactive_opacity 1.0 ; keyword decoration:fullscreen_opacity 1.0"
+  hyprctl eval 'hl.config({ animations = { enabled = false }, decoration = { blur = { enabled = false }, active_opacity = 1.0, inactive_opacity = 1.0, fullscreen_opacity = 1.0 } })'
   brightnessctl set "$BRIGHTNESS_ON"
 
   # CPU Powersave Sequence
@@ -84,7 +84,7 @@ deactivate_save_mode() {
 
   hyprctl keyword animations:enabled 1
   hyprctl keyword decoration:blur:enabled 1
-  hyprctl --batch "keyword decoration:active_opacity 0.75 ; keyword decoration:inactive_opacity 0.75"
+  hyprctl eval 'hl.config({ animations = { enabled = true }, decoration = { blur = { enabled = true }, active_opacity = 0.75, inactive_opacity = 0.75 } })'
   brightnessctl set "$BRIGHTNESS_OFF"
 
   # CPU Performance Sequence

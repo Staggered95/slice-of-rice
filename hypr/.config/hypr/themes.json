@@ -18,7 +18,7 @@
     },
     "colors": {
       "hyprland": {
-        "active_border": "rgba(a7c080ee) rgba(dbbc7fee) 45deg",
+        "active_border": "{ colors = { \"rgba(a7c080ee)\", \"rgba(dbbc7fee)\" }, angle = 45 }",
         "inactive_border": "rgba(4a555baa)"
       },
       "waybar": {
@@ -147,7 +147,7 @@
     },
     "colors": {
       "hyprland": {
-        "active_border": "rgba(B0F217ff) rgba(B0F217ff) 45deg",
+        "active_border": "{ colors = { \"rgba(B0F217ff)\", \"rgba(B0F217ff)\" }, angle = 45 }",
         "inactive_border": "rgba(d8d3baaa)"
       },
       "waybar": {
@@ -275,7 +275,7 @@
     },
     "colors": {
       "hyprland": {
-        "active_border": "rgba(89b4faee) rgba(cba6f7ee) 45deg",
+        "active_border": "{ colors = { \"rgba(89b4faee)\", \"rgba(cba6f7ee)\" }, angle = 45 }",
         "inactive_border": "rgba(585b70aa)"
       },
       "waybar": {
@@ -402,7 +402,7 @@
     },
     "colors": {
       "hyprland": {
-        "active_border": "rgba(8839efee) rgba(dd7878ee) 45deg",
+        "active_border": "{ colors = { \"rgba(8839efee)\", \"rgba(dd7878ee)\" }, angle = 45 }",
         "inactive_border": "rgba(bcc0caaa)",
         "opacity": "1.0"
       },
@@ -530,7 +530,7 @@
     },
     "colors": {
       "hyprland": {
-        "active_border": "rgba(fabd2fee) rgba(fe8019ee) 45deg",
+        "active_border": "{ colors = { \"rgba(fabd2fee)\", \"rgba(fe8019ee)\" }, angle = 45 }",
         "inactive_border": "rgba(504945aa)"
       },
       "waybar": {
@@ -657,7 +657,7 @@
     },
     "colors": {
       "hyprland": {
-        "active_border": "rgba(458588ee) rgba(689d6aee) 45deg",
+        "active_border": "{ colors = { \"rgba(458588ee)\", \"rgba(689d6aee)\" }, angle = 45 }",
         "inactive_border": "rgba(928374aa)"
       },
       "waybar": {
@@ -785,7 +785,7 @@
     },
     "colors": {
       "hyprland": {
-        "active_border": "rgba(bd93f9ee) rgba(ff79c6ee) 45deg",
+        "active_border": "{ colors = { \"rgba(bd93f9ee)\", \"rgba(ff79c6ee)\" }, angle = 45 }",
         "inactive_border": "rgba(44475aaa)"
       },
       "waybar": {
@@ -914,7 +914,7 @@
     },
     "colors": {
       "hyprland": {
-        "active_border": "rgba(81a1c1ee) rgba(88c0d0ee) 45deg",
+        "active_border": "{ colors = { \"rgba(81a1c1ee)\", \"rgba(88c0d0ee)\" }, angle = 45 }",
         "inactive_border": "rgba(4c566aaa)"
       },
       "waybar": {
@@ -1043,7 +1043,7 @@
     },
     "colors": {
       "hyprland": {
-        "active_border": "rgba(5e81acee) rgba(81a1c1ee) 45deg",
+        "active_border": "{ colors = { \"rgba(5e81acee)\", \"rgba(81a1c1ee)\" }, angle = 45 }",
         "inactive_border": "rgba(d8dee9aa)"
       },
       "waybar": {

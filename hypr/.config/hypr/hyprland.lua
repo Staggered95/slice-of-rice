@@ -278,7 +278,7 @@ hl.curve("easeOutExpo", {
 	points = { { 0.16, 1 }, { 0.3, 1 } },
 })
 hl.animation({ leaf = "windows", enabled = true, speed = 3, bezier = "md3_decel", style = "popin 60%" })
-hl.animation({ leaf = "border", enabled = true, speed = 10 })
+hl.animation({ leaf = "border", enabled = true, speed = 10, bezier = "linear" })
 hl.animation({ leaf = "fade", enabled = true, speed = 2.5, bezier = "md3_decel" })
 hl.animation({ leaf = "workspaces", enabled = true, speed = 3.5, bezier = "easeOutExpo", style = "slide" })
 hl.animation({ leaf = "specialWorkspace", enabled = true, speed = 3, bezier = "md3_decel", style = "slidevert" })
@@ -391,6 +391,7 @@ hl.config({
 -- See https://wiki.hypr.land/Configuring/Keywords/
 
 local mainMod = "SUPER"
+local d = ""
 
 -- Sets "Windows" key as main modifier
 
@@ -408,7 +409,7 @@ hl.bind(mainMod .. " + " .. "F", hl.dsp.exec_cmd("firefox"))
 
 hl.bind(mainMod .. " + " .. "V", hl.dsp.window.float())
 
-hl.bind("LALT" .. " + " .. "Return", hl.dsp.window.fullscreen())
+hl.bind("ALT" .. " + " .. "Return", hl.dsp.window.fullscreen())
 
 hl.bind(mainMod .. " + " .. "I", hl.dsp.exec_cmd("sh ~/.config/hypr/scripts/toggle_btop.sh"))
 
@@ -540,53 +541,56 @@ hl.bind(mainMod .. " + " .. "CTRL" .. " + " .. "RIGHT", hl.dsp.focus({ workspace
 
 -- Move/resize windows with mainMod + LMB/RMB and dragging
 
-hl.bind(mainMod .. " + " .. "mouse:272", hl.dsp.window.drag(), { mouse = true })
-
-hl.bind(mainMod .. " + " .. "mouse:273", hl.dsp.window.resize(), { mouse = true })
+hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true, description = d .. " hold to move window" })
+hl.bind(
+	mainMod .. " + mouse:273",
+	hl.dsp.window.resize(),
+	{ mouse = true, description = d .. " hold to resize window" }
+)
 
 local wm = "Window Management"
 
-local d = "[Window Management|Resize Active Window]"
+d = "[Window Management|Resize Active Window]"
 
 -- Resize windows
 
-hl.bind(mainMod .. " + " .. "Shift" .. " + " .. "Right", hl.dsp.window.resize({ x = 30, y = 0, relative = true }))
+hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. "Right", hl.dsp.window.resize({ x = 30, y = 0, relative = true }))
 
-hl.bind(mainMod .. " + " .. "Shift" .. " + " .. "Left", hl.dsp.window.resize({ x = -30, y = 0, relative = true }))
+hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. "Left", hl.dsp.window.resize({ x = -30, y = 0, relative = true }))
 
-hl.bind(mainMod .. " + " .. "Shift" .. " + " .. "Up", hl.dsp.window.resize({ x = 0, y = -30, relative = true }))
+hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. "Up", hl.dsp.window.resize({ x = 0, y = -30, relative = true }))
 
-hl.bind(mainMod .. " + " .. "Shift" .. " + " .. "Down", hl.dsp.window.resize({ x = 0, y = 30, relative = true }))
+hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. "Down", hl.dsp.window.resize({ x = 0, y = 30, relative = true }))
 
--- Move active window around current workspace with mainMod + Shift + Control [←→↑↓]
+-- Move active window around current workspace with mainMod + SHIFT + CTRL [←→↑↓]
 
 d = "[Window Management|Move active window across workspace]"
 
 local moveactivewindow = "grep -q true <<< $(hyprctl activewindow -j | jq -r .floating) && hyprctl dispatch moveactive"
 
 hl.bind(
-	mainMod .. " + " .. "Shift + Control" .. " + " .. "left",
+	mainMod .. " + " .. "SHIFT + CTRL" .. " + " .. "left",
 	hl.dsp.exec_cmd(
 		"grep -q true <<< $(hyprctl activewindow -j | jq -r .floating) && hyprctl dispatch moveactive -30 0 || hyprctl dispatch movewindow l"
 	)
 )
 
 hl.bind(
-	mainMod .. " + " .. "Shift + Control" .. " + " .. "right",
+	mainMod .. " + " .. "SHIFT + CTRL" .. " + " .. "right",
 	hl.dsp.exec_cmd(
 		"grep -q true <<< $(hyprctl activewindow -j | jq -r .floating) && hyprctl dispatch moveactive 30 0 || hyprctl dispatch movewindow r"
 	)
 )
 
 hl.bind(
-	mainMod .. " + " .. "Shift + Control" .. " + " .. "up",
+	mainMod .. " + " .. "SHIFT + CTRL" .. " + " .. "up",
 	hl.dsp.exec_cmd(
 		"grep -q true <<< $(hyprctl activewindow -j | jq -r .floating) && hyprctl dispatch moveactive 0 -30 || hyprctl dispatch movewindow u"
 	)
 )
 
 hl.bind(
-	mainMod .. " + " .. "Shift + Control" .. " + " .. "down",
+	mainMod .. " + " .. "SHIFT + CTRL" .. " + " .. "down",
 	hl.dsp.exec_cmd(
 		"grep -q true <<< $(hyprctl activewindow -j | jq -r .floating) && hyprctl dispatch moveactive 0 30 || hyprctl dispatch movewindow d"
 	)
@@ -595,14 +599,15 @@ hl.bind(
 -- Move/Resize focused window
 d = "[Window Management|Move & Resize with mouse]"
 
-hl.bind(mainMod .. " + mouse:272", hl.dsp.window.move(nil), { mouse = true, description = d .. " hold to move window" })
+hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true, description = d .. " hold to move window" })
+
 hl.bind(
 	mainMod .. " + mouse:273",
 	hl.dsp.window.resize(nil),
 	{ mouse = true, description = d .. " hold to resize window" }
 )
-hl.bind(mainMod .. " + Z", hl.dsp.window.move(nil), { mouse = true, description = d .. " hold to move window" })
-hl.bind(mainMod .. " + X", hl.dsp.window.resize(nil), { mouse = true, description = d .. " hold to resize window" })
+hl.bind(mainMod .. " + Z", hl.dsp.window.drag(), { mouse = true, description = d .. " hold to move window" })
+hl.bind(mainMod .. " + X", hl.dsp.window.resize(), { mouse = true, description = d .. " hold to resize window" })
 
 -- Laptop multimedia keys for volume and LCD brightness
 
@@ -669,148 +674,72 @@ hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true 
 --#############################
 
 -- Global suppression rule
-
 hl.window_rule({
 	match = {
 		class = ".*",
 	},
-	suppressevent = "maximize",
+	suppress_event = "maximize",
 })
--- Opacity for nm-applet (using the 'override' syntax from the wiki example)
 
+-- Opacity for nm-applet (using the 'override' syntax from the wiki example)
 hl.window_rule({
-	name = "opacity_0_80_overrid",
 	match = {
 		class = "^(nm-applet)$",
 	},
-	opacity = { 0.80, "override", 0.70, "override", 1.0, "override" },
+	opacity = "0.80 override 0.70 override 1.0 override",
 })
 
 -- nm-connection-editor
-
 hl.window_rule({
-	name = "float_on",
 	match = {
 		class = "^(nm-connection-editor)$",
 	},
 	float = true,
-})
-
-hl.window_rule({
-	name = "size_50__50_",
-	match = {
-		class = "^(nm-connection-editor)$",
-	},
-	size = { "50%", "50%" },
-})
-
-hl.window_rule({
-	name = "center_on",
-	match = {
-		class = "^(nm-connection-editor)$",
-	},
+	size = { "750", "460" },
 	center = true,
 })
 
 -- PulseAudio Volume Control
-
 hl.window_rule({
-	name = "float_on",
 	match = {
 		class = "^(org.pulseaudio.pavucontrol)$",
 	},
 	float = true,
-})
-
-hl.window_rule({
-	name = "size_50__50_",
-	match = {
-		class = "^(org.pulseaudio.pavucontrol)$",
-	},
-	size = { "50%", "50%" },
-})
-
-hl.window_rule({
-	name = "center_on",
-	match = {
-		class = "^(org.pulseaudio.pavucontrol)$",
-	},
+	size = { "750", "460" },
 	center = true,
 })
 
 -- Bluetooth Manager
-
 hl.window_rule({
-	name = "float_on",
 	match = {
 		class = "^(blueman-manager)$",
 	},
 	float = true,
-})
-
-hl.window_rule({
-	name = "size_50__50_",
-	match = {
-		class = "^(blueman-manager)$",
-	},
-	size = { "50%", "50%" },
-})
-
-hl.window_rule({
-	name = "center_on",
-	match = {
-		class = "^(blueman-manager)$",
-	},
+	size = { "750", "460" },
 	center = true,
 })
 
 -- Wofi
-
 hl.window_rule({
-	name = "rounding_15",
 	match = {
 		class = "^(wofi)$",
 	},
 	rounding = 15,
-})
-
-hl.window_rule({
-	match = {
-		class = "^(wofi)$",
-	},
-	noshadow = true,
+	no_shadow = true,
 })
 
 -- File Roller (Archive Manager)
-
 hl.window_rule({
-	name = "float_on",
 	match = {
 		class = "^(org.gnome.FileRoller)$",
 	},
 	float = true,
-})
-
-hl.window_rule({
-	name = "size_60__60_",
-	match = {
-		class = "^(org.gnome.FileRoller)$",
-	},
-	size = { "60%", "60%" },
-})
-
-hl.window_rule({
-	name = "center_on",
-	match = {
-		class = "^(org.gnome.FileRoller)$",
-	},
+	size = { "750", "460" },
 	center = true,
 })
 
 -- YouTube Music
-
 hl.window_rule({
-	name = "tile_on",
 	match = {
 		title = "^(music.youtube.com_/$)",
 	},
