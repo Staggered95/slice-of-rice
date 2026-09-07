@@ -23,7 +23,7 @@
   <property name="last-sort-column" type="string" value="THUNAR_COLUMN_NAME"/>
   <property name="last-sort-order" type="string" value="GTK_SORT_ASCENDING"/>
   <property name="last-details-view-zoom-level" type="string" value="THUNAR_ZOOM_LEVEL_38_PERCENT"/>
-  <property name="last-details-view-column-widths" type="string" value="50,50,146,129,50,432,50,50,785,50,50,97,50,284"/>
+  <property name="last-details-view-column-widths" type="string" value="50,50,146,129,50,251,50,50,969,50,50,92,50,286"/>
   <property name="last-side-pane" type="string" value="THUNAR_SIDEPANE_TYPE_SHORTCUTS"/>
   <property name="misc-confirm-close-multiple-tabs" type="bool" value="false"/>
 </channel>
