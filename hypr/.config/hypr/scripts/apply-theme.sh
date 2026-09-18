@@ -353,6 +353,46 @@ sed -e "s/__gradient_1__/$cava_gradient_1/g" \
   -e "s/__background__/$cava_background/g" \
   "$CAVA_TEMPLATE" >"$CAVA_CONFIG"
 
+# --- Vivaldi ---
+# Change Vivaldi theme if Vivaldi Stable is installed.
+if pacman -Q vivaldi &>/dev/null; then
+  VIVALDI_PREFS="$HOME/.config/vivaldi/Default/Preferences"
+
+  if [ -f "$VIVALDI_PREFS" ] && [ -n "$vivaldi_theme" ]; then
+    # Remember whether Vivaldi was running.
+    VIVALDI_WAS_RUNNING=0
+    if pidof vivaldi-bin &>/dev/null || pidof vivaldi &>/dev/null; then
+      VIVALDI_WAS_RUNNING=1
+    fi
+
+    # Vivaldi can overwrite Preferences when exiting, so stop it first.
+    if [ "$VIVALDI_WAS_RUNNING" -eq 1 ]; then
+      pkill -x vivaldi-bin 2>/dev/null
+      pkill -x vivaldi 2>/dev/null
+
+      # Wait until Vivaldi has actually exited.
+      for _ in {1..50}; do
+        if ! pidof vivaldi-bin &>/dev/null && ! pidof vivaldi &>/dev/null; then
+          break
+        fi
+        sleep 0.1
+      done
+    fi
+
+    # Update both light and dark scheduled themes.
+    jq --arg theme "$vivaldi_theme" \
+      '.vivaldi.theme.schedule.o_s.light = $theme
+       | .vivaldi.theme.schedule.o_s.dark = $theme' \
+      "$VIVALDI_PREFS" >"$VIVALDI_PREFS.tmp" &&
+      mv "$VIVALDI_PREFS.tmp" "$VIVALDI_PREFS"
+
+    # Restart only if Vivaldi was running before the theme switch.
+    if [ "$VIVALDI_WAS_RUNNING" -eq 1 ]; then
+      vivaldi &>/dev/null &
+    fi
+  fi
+fi
+
 # --- Others ---
 # --- Firefox userContent Wallpaper Sync ---
 FIREFOX_PROFILE=$(ls -d ~/.mozilla/firefox/*.default 2>/dev/null | head -n 1)

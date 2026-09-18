@@ -1,2 +1,2 @@
 vim.o.background = 'dark'
-vim.cmd.colorscheme('everforest')
+vim.cmd.colorscheme('nord')

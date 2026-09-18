@@ -14,7 +14,8 @@
       "vs_codium_theme": "Everforest Dark",
       "vivid_theme": "snazzy",
       "nvim_theme": "everforest",
-      "nvim_background": "dark"
+      "nvim_background": "dark",
+      "vivaldi_theme": "307bc3b7-9942-41bb-94f2-96120378f412"
     },
     "colors": {
       "hyprland": {
@@ -143,7 +144,8 @@
       "vs_codium_theme": "Everforest Light",
       "vivid_theme": "ayu",
       "nvim_theme": "everforest",
-      "nvim_background": "light"
+      "nvim_background": "light",
+      "vivaldi_theme": "1521e65c-90ea-448c-b5f6-29b13abad65d"
     },
     "colors": {
       "hyprland": {
@@ -271,7 +273,8 @@
       "vs_codium_theme": "Catppuccin Mocha",
       "vivid_theme": "catppuccin-mocha",
       "nvim_theme": "catppuccin",
-      "nvim_background": ""
+      "nvim_background": "",
+      "vivaldi_theme": "9a5d69fb-1639-4ec5-ad13-6282a7cd0dc5"
     },
     "colors": {
       "hyprland": {
@@ -398,7 +401,8 @@
       "vs_codium_theme": "Catppuccin Latte",
       "vivid_theme": "catppuccin-latte",
       "nvim_theme": "catppuccin",
-      "nvim_background": "light"
+      "nvim_background": "light",
+      "vivaldi_theme": "Vivaldi5"
     },
     "colors": {
       "hyprland": {
@@ -526,7 +530,8 @@
       "vs_codium_theme": "Gruvbox Dark Medium",
       "vivid_theme": "gruvbox-dark",
       "nvim_theme": "gruvbox",
-      "nvim_background": ""
+      "nvim_background": "",
+      "vivaldi_theme": "1c07327a-1d2d-4cf0-a750-b73dc975b581"
     },
     "colors": {
       "hyprland": {
@@ -653,7 +658,8 @@
       "vs_codium_theme": "Gruvbox Light Medium",
       "vivid_theme": "gruvbox-light",
       "nvim_theme": "gruvbox",
-      "nvim_background": "light"
+      "nvim_background": "light",
+      "vivaldi_theme": "60ec0c5c-8494-41a1-927d-53ee4d065e35"
     },
     "colors": {
       "hyprland": {
@@ -781,7 +787,8 @@
       "vs_codium_theme": "Dracula Theme",
       "vivid_theme": "dracula",
       "nvim_theme": "dracula",
-      "nvim_background": "dark"
+      "nvim_background": "dark",
+      "vivaldi_theme": "fca11113-6bf3-4242-b7b5-55da461ec7d9"
     },
     "colors": {
       "hyprland": {
@@ -910,7 +917,8 @@
       "vs_codium_theme": "Nord",
       "vivid_theme": "nord",
       "nvim_theme": "nord",
-      "nvim_background": "dark"
+      "nvim_background": "dark",
+      "vivaldi_theme": "0f23d6cf-8617-4fb3-aa95-3740a9a9e03a"
     },
     "colors": {
       "hyprland": {
@@ -1039,7 +1047,8 @@
       "vs_codium_theme": "Nord Light",
       "vivid_theme": "nord",
       "nvim_theme": "nord",
-      "nvim_background": "light"
+      "nvim_background": "light",
+      "vivaldi_theme": "VivaldiZen"
     },
     "colors": {
       "hyprland": {
@@ -1153,7 +1162,5 @@
       }
     }
   }
-
-
 }
 
