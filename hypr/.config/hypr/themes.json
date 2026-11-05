@@ -882,7 +882,7 @@
         "os_icon_fg": "231",
         "main_bg": "61",
         "main_fg": "231",
-        "anchor_fg": "61",
+        "anchor_fg": "231",
         "vcs_clean_bg": "84",
         "vcs_modified_bg": "215",
         "vcs_untracked_bg": "84",
@@ -1045,7 +1045,7 @@
       "cursor_size": "26",
       "font_name": "IBM Plex Sans 12",
       "vs_codium_theme": "Nord Light",
-      "vivid_theme": "nord",
+      "vivid_theme": "alabaster_dark",
       "nvim_theme": "nord",
       "nvim_background": "light",
       "vivaldi_theme": "VivaldiZen"
@@ -1152,6 +1152,9 @@
         "exec_time_fg": "255",
         "background_jobs_bg": "139",
         "background_jobs_fg": "255"
+      },
+      "zsh": {
+        "autosuggest_fg": "4"
       },
       "cava": {
         "background": "#eceff4",
