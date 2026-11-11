@@ -70,9 +70,15 @@ window {
 /* --- Icon and Text inside each entry --- */
 #img {
     margin-right: 10px;
+    background-color: transparent;
 }
 
 #text {
     color: inherit;
+    background-color: transparent;
 }
 
+#entry:selected #text {
+    color: @entry_selected_fg;
+    background-color: transparent;
+}
