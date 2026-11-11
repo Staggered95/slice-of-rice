@@ -1012,7 +1012,7 @@
         "os_icon_fg": "255",
         "main_bg": "31",
         "main_fg": "255",
-        "anchor_fg": "31",
+        "anchor_fg": "159",
         "vcs_clean_bg": "108",
         "vcs_modified_bg": "179",
         "vcs_untracked_bg": "108",

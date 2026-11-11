@@ -1,3 +1,13 @@
+## [1.29.2](https://github.com/jdinhify/vscode-theme-gruvbox/compare/v1.29.1...v1.29.2) (2026-11-05)
+
+
+### Bug Fixes
+
+* address open theme issues ([#160](https://github.com/jdinhify/vscode-theme-gruvbox/issues/160)) ([5538f16](https://github.com/jdinhify/vscode-theme-gruvbox/commit/5538f16b660b5ebf12450e5dfcf15e6f9f64960a)), closes [#159](https://github.com/jdinhify/vscode-theme-gruvbox/issues/159) [#68](https://github.com/jdinhify/vscode-theme-gruvbox/issues/68) [#46](https://github.com/jdinhify/vscode-theme-gruvbox/issues/46) [#139](https://github.com/jdinhify/vscode-theme-gruvbox/issues/139) [#90](https://github.com/jdinhify/vscode-theme-gruvbox/issues/90) [#29](https://github.com/jdinhify/vscode-theme-gruvbox/issues/29) [#92](https://github.com/jdinhify/vscode-theme-gruvbox/issues/92) [#61](https://github.com/jdinhify/vscode-theme-gruvbox/issues/61) [#82](https://github.com/jdinhify/vscode-theme-gruvbox/issues/82) [#84](https://github.com/jdinhify/vscode-theme-gruvbox/issues/84)
+
+
+
+
 ## [1.29.1](https://github.com/jdinhify/vscode-theme-gruvbox/compare/v1.29.0...v1.29.1) (2026-04-15)
 
 
@@ -284,16 +294,6 @@
 ### Features
 
 * add async keyword scope in Python ([#75](https://github.com/jdinhify/vscode-theme-gruvbox/issues/75)) ([022054d](https://github.com/jdinhify/vscode-theme-gruvbox/commit/022054d0b132949768b7bb295f4f29f672fe019d))
-
-
-
-
-# [1.10.0](https://github.com/jdinhify/vscode-theme-gruvbox/compare/v1.9.2...v1.10.0) (2023-10-25)
-
-
-### Features
-
-* add menu separator to match with menu border ([#74](https://github.com/jdinhify/vscode-theme-gruvbox/issues/74)) ([6c56be6](https://github.com/jdinhify/vscode-theme-gruvbox/commit/6c56be645e294218ceb32a40972d6a51c782b2e5))
 
 
 
