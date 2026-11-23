@@ -46,6 +46,7 @@ hl.env("XCURSOR_SIZE", 24)
 hl.env("QT_QPA_PLATFORMTHEME", "qt5ct")
 hl.env("QT_PLATFORMTHEME", "qt6ct")
 hl.env("QT_STYLE_OVERRIDE", "kvantum")
+hl.env("GDK_WAYLAND_DISABLE", "ext_background_effect_manager_v1")
 
 --####################
 --## LOOK AND FEEL ###
