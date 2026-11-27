@@ -8,6 +8,8 @@ alias auto='sh ~/auto.sh'
 alias die='figlet "Just Die Already"'
 alias sync-anime='sh ~/Scripts/sync.sh'
 alias download-anime='sh ~/Scripts/download.sh'
+alias test-hdmi='sh ~/Scripts/test.sh'
+
 
 # For hey, a linux support
 hey() { sh ~/Scripts/gemini-chat.sh "$@"; }
@@ -21,4 +23,11 @@ dev-reset() { ~/Scripts/dev --reset; }
 otaku() { ~/Scripts/otaku "$@"; }
 otaku-reset() { ~/Scripts/otaku --reset; }
 
-
+proj() {
+  if [[ "$1" == "off" ]]; then
+    echo detect | sudo tee /sys/class/drm/card1-HDMI-A-1/status
+  else
+    echo on | sudo tee /sys/class/drm/card1-HDMI-A-1/status
+    hyprctl keyword monitor "HDMI-A-1,${1:-1280x720@60},auto,1,mirror,eDP-1"
+  fi
+}

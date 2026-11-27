@@ -17,6 +17,7 @@ BRIGHTNESS_OFF="60%"
 
 # --- SERVICE MANAGEMENT ---
 # Use base names only (e.g., "postgresql", not "postgresql.service")
+# add mariadb
 SYSTEM_SERVICES_TO_STOP=(
   "warp-svc"
   "mariadb"
